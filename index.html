@@ -9,6 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js')</script>
 <style>
 :root{
   --red:#B8271F;
@@ -74,8 +75,9 @@ nav{position:sticky;top:0;z-index:60;background:var(--red);border-bottom:5px sol
 .hero-bg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%, rgba(0,0,0,.5) 0%, transparent 60%)}
 .sunburst{position:absolute;top:50%;left:50%;width:900px;height:900px;transform:translate(-50%,-58%);
   background:repeating-conic-gradient(from 0deg at 50% 50%, rgba(255,214,122,.22) 0deg 6deg, transparent 6deg 12deg);
-  border-radius:50%;animation:spin 60s linear infinite;z-index:1;pointer-events:none;mask:radial-gradient(circle,#000 55%,transparent 72%);-webkit-mask:radial-gradient(circle,#000 55%,transparent 72%)}
+  border-radius:50%;animation:spin 90s linear infinite, sunPulse 9s ease-in-out infinite;z-index:1;pointer-events:none;mask:radial-gradient(circle,#000 55%,transparent 72%);-webkit-mask:radial-gradient(circle,#000 55%,transparent 72%)}
 @keyframes spin{to{transform:translate(-50%,-58%) rotate(360deg)}}
+@keyframes sunPulse{0%,100%{opacity:.82}50%{opacity:1}}
 .hero-content{position:relative;z-index:3;padding:20px 20px 90px;max-width:860px}
 .hero-logo-wrap{position:relative;width:min(340px,74vw);margin:0 auto 20px;filter:drop-shadow(0 16px 30px rgba(0,0,0,.45))}
 .hero-logo{width:100%;animation:bob 5s ease-in-out infinite}
@@ -93,6 +95,13 @@ nav{position:sticky;top:0;z-index:60;background:var(--red);border-bottom:5px sol
 .btn-cream:hover{box-shadow:7px 7px 0 var(--ink)}
 .now-open{display:inline-block;background:var(--gold);color:var(--ink);font-family:'Bungee',sans-serif;padding:9px 24px;border-radius:999px;transform:rotate(-3deg);border:3px solid var(--ink);box-shadow:4px 4px 0 rgba(0,0,0,.4);margin-bottom:20px;font-size:.95rem;letter-spacing:1px;animation:wobble 3.5s ease-in-out infinite}
 @keyframes wobble{0%,100%{transform:rotate(-3deg)}50%{transform:rotate(2deg) scale(1.03)}}
+/* hero entrance */
+@keyframes heroIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+html.js .hero-logo-wrap{animation:heroIn .55s ease-out both}
+html.js .hero .now-open{animation:heroIn .5s ease-out both, wobble 3.5s ease-in-out infinite;animation-delay:.12s,.62s}
+html.js .hero h1{animation:heroIn .55s ease-out .2s both}
+html.js .hero p.sub{animation:heroIn .55s ease-out .32s both}
+html.js .hero .btn-row{animation:heroIn .55s ease-out .44s both}
 /* awning scallop bottom of hero */
 .awning{position:absolute;left:0;right:0;bottom:0;height:38px;z-index:3;
   background:repeating-linear-gradient(90deg,var(--red) 0 40px,var(--butter) 40px 80px)}
@@ -173,7 +182,8 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .why .eyebrow{background:var(--red);color:var(--gold)}
 .why h2{color:var(--red-dark)}
 .why-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;margin-top:32px}
-.why-card{background:var(--butter);border:4px solid var(--ink);border-radius:16px;padding:26px 22px;box-shadow:5px 5px 0 var(--red);text-align:center}
+.why-card{background:var(--butter);border:4px solid var(--ink);border-radius:16px;padding:26px 22px;box-shadow:5px 5px 0 var(--red);text-align:center;transition:transform .15s, box-shadow .15s}
+.why-card:hover{transform:translate(-3px,-3px);box-shadow:8px 8px 0 var(--red)}
 .why-card .em{font-size:2.4rem;display:block;margin-bottom:10px}
 .why-card h3{color:var(--red);font-size:1.05rem;margin-bottom:6px;font-family:'Bungee',sans-serif}
 .why-card p{font-weight:700;font-size:.96rem}
@@ -195,7 +205,8 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .contact h2{color:var(--gold)}
 .contact .eyebrow{background:var(--gold);color:var(--ink)}
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:stretch}
-.contact-card{background:var(--white);border:4px solid var(--ink);border-radius:16px;box-shadow:8px 8px 0 var(--gold);padding:34px;color:var(--ink)}
+.contact-card{background:var(--white);border:4px solid var(--ink);border-radius:16px;box-shadow:8px 8px 0 var(--gold);padding:34px;color:var(--ink);transition:transform .15s, box-shadow .15s}
+.contact-card:hover{transform:translate(-3px,-3px);box-shadow:11px 11px 0 var(--gold)}
 .contact-card h3{color:var(--red);font-size:1.05rem;margin:20px 0 4px;font-family:'Bungee',sans-serif}
 .contact-card h3:first-child{margin-top:0}
 .contact-card p{font-weight:700}
@@ -208,7 +219,12 @@ footer .flogo{width:90px;margin:0 auto 14px;filter:drop-shadow(0 6px 12px rgba(0
 footer .slab{color:var(--gold);font-size:1.4rem;margin-bottom:6px}
 footer a{color:var(--gold)}
 footer .socials{margin:14px 0 4px;display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-footer .socials a{background:var(--red);border:2px solid var(--gold);border-radius:999px;padding:8px 18px;text-decoration:none;font-weight:800;color:var(--white)}
+footer .socials a{background:var(--red);border:2px solid var(--gold);border-radius:999px;padding:8px 18px;text-decoration:none;font-weight:800;color:var(--white);transition:background .15s, transform .15s}
+footer .socials a:hover{background:var(--gold);color:var(--ink);transform:translateY(-2px)}
+
+/* ---------- SCROLL REVEAL ---------- */
+html.js .reveal{opacity:0;transform:translateY(24px)}
+html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease-out, transform .6s ease-out;transition-delay:calc(var(--i,0) * 100ms)}
 
 @media(max-width:860px){
   .split,.contact-grid{grid-template-columns:1fr}
@@ -223,6 +239,9 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
 }
 @media (prefers-reduced-motion: reduce){
   .ticker-track,.sunburst,.hero-logo,.now-open,.bulb{animation:none}
+  html.js .hero-logo-wrap,html.js .hero h1,html.js .hero p.sub,html.js .hero .btn-row,html.js .hero .now-open{animation:none}
+  html.js .reveal{opacity:1;transform:none}
+  html.js .reveal.in{transition:none}
   html{scroll-behavior:auto}
   .ticker-track{flex-wrap:wrap;width:auto;justify-content:center}
 }
@@ -285,7 +304,7 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
 </div>
 
 <div class="info-strip">
-  <div class="info-cards">
+  <div class="info-cards stagger">
     <div class="info-card">
       <div class="ico">📍</div>
       <h3>Find Us</h3>
@@ -305,7 +324,7 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
 </div>
 
 <section class="food" id="food">
-  <div class="wrap split">
+  <div class="wrap split reveal">
     <div class="photo-frame"><img src="assets/food-basket.jpg" alt="Basket of saucy chicken wings with crispy fries and dipping sauces"></div>
     <div style="position:relative">
       <span class="tag">FRESH<br>NEVER<br>FROZEN</span>
@@ -327,7 +346,7 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
   <div class="wrap" style="text-align:center">
     <span class="eyebrow">The menu</span>
     <h2>Full menu coming soon</h2>
-    <div class="menu-board">
+    <div class="menu-board reveal">
       <h3>We're putting the finishing touches on it!</h3>
       <p>Our full menu with prices is on its way. In the meantime, give us a call and we'll tell you everything that's hot out of the kitchen today.</p>
       <div class="menu-cats">
@@ -348,7 +367,7 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
     <p class="lead" style="margin:0 auto">Red barn out front, string lights on the patio, cozy wood booths and stained-glass lamps inside — the kind of place where nobody's in a hurry. Bring the whole family.</p>
   </div>
   <div class="wrap">
-    <div class="gallery">
+    <div class="gallery reveal">
       <figure class="big">
         <img src="assets/exterior-evening.jpg" alt="The Chicken Shack storefront at dusk with string lights and neon open sign">
         <figcaption>The Shack at dusk — you can't miss the red.</figcaption>
@@ -372,7 +391,7 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
   <div class="wrap" style="text-align:center">
     <span class="eyebrow">Why folks keep coming back</span>
     <h2>Good chicken, done right</h2>
-    <div class="why-grid">
+    <div class="why-grid stagger">
       <div class="why-card"><span class="em">🐔</span><h3>Fresh Daily</h3><p>Never frozen. Cooked to order, every single basket.</p></div>
       <div class="why-card"><span class="em">🔥</span><h3>Made to Order</h3><p>Nothing sits under a heat lamp — it's hot when it hits your hands.</p></div>
       <div class="why-card"><span class="em">🚗</span><h3>Dine In or Carry Out</h3><p>Pull up a booth or grab it to go. Delivery keeps King fed too.</p></div>
@@ -384,14 +403,14 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
 <section class="careers" id="careers">
   <div class="wrap">
     <span class="eyebrow">Join the flock</span>
-    <h2>We're hiring!</h2>
-    <p class="lead">Full-time and part-time spots open. No experience needed for the kitchen — we train on the job.</p>
-    <div class="jobs">
+    <h2 class="reveal">We're hiring!</h2>
+    <p class="lead reveal">Full-time and part-time spots open. No experience needed for the kitchen — we train on the job.</p>
+    <div class="jobs stagger">
       <div class="job"><span class="em">👨‍🍳</span><h3>Line Cooks</h3><p>On-the-job training provided</p></div>
       <div class="job"><span class="em">🙌</span><h3>Servers</h3><p>Friendly faces wanted</p></div>
       <div class="job"><span class="em">🚗</span><h3>Delivery Drivers</h3><p>Keep King fed on the go</p></div>
     </div>
-    <div class="hire-note">
+    <div class="hire-note reveal">
       <p><strong>Walk-in interviews:</strong> Monday–Friday, 11am–4pm — just stop by!</p>
       <a class="btn btn-gold" href="mailto:chicken.shack.waupaca@gmail.com?subject=Job%20Application">Apply by Email</a>
     </div>
@@ -432,6 +451,47 @@ footer .socials a{background:var(--red);border:2px solid var(--gold);border-radi
   </div>
   <p style="margin-top:10px;font-size:.9rem">Chicken! Fresh, never frozen. 🐔</p>
 </footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // stagger: mark each child of a .stagger row as a reveal target with an index
+  document.querySelectorAll('.stagger').forEach(function(row){
+    Array.prototype.forEach.call(row.children, function(child, i){
+      child.classList.add('reveal');
+      child.style.setProperty('--i', i);
+    });
+  });
+
+  var targets = Array.prototype.slice.call(document.querySelectorAll('.reveal'));
+
+  function settle(el){
+    el.classList.remove('reveal','in');
+    el.style.removeProperty('--i');
+  }
+
+  if(reduce || !('IntersectionObserver' in window)){
+    targets.forEach(settle);
+    return;
+  }
+
+  var io = new IntersectionObserver(function(entries, obs){
+    entries.forEach(function(entry){
+      if(!entry.isIntersecting) return;
+      var el = entry.target;
+      obs.unobserve(el);
+      el.classList.add('in');
+      var done = false;
+      function finish(e){ if(done || (e && e.target !== el)) return; done = true; el.removeEventListener('transitionend', finish); settle(el); }
+      el.addEventListener('transitionend', finish);
+      setTimeout(finish, 1300);
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
+
+  targets.forEach(function(el){ io.observe(el); });
+})();
+</script>
 
 </body>
 </html>
