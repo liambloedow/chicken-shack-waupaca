@@ -3,9 +3,60 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Chicken Shack — Waupaca, WI | Lip Smackin' Good!</title>
-<meta name="description" content="The Chicken Shack in King, Waupaca WI. Deep fried chicken, chicken wings, and grilled chicken — homestyle chicken. Open 7 days a week. (715) 942-2434">
+<title>The Chicken Shack — Fried Chicken &amp; Wings in King / Waupaca, WI</title>
+<meta name="description" content="The Chicken Shack in King, Waupaca WI. Deep fried chicken, chicken tenders, bone-in &amp; boneless wings, grilled chicken, mac &amp; cheese and more. Dine-in, carry-out &amp; delivery. Open Wednesday–Sunday. 715-942-2533">
+<link rel="canonical" href="https://liambloedow.github.io/chicken-shack-waupaca/">
 <link rel="icon" href="assets/favicon.png" type="image/png">
+
+<!-- Open Graph -->
+<meta property="og:type" content="restaurant">
+<meta property="og:site_name" content="The Chicken Shack">
+<meta property="og:title" content="The Chicken Shack — Fried Chicken &amp; Wings in King / Waupaca, WI">
+<meta property="og:description" content="Deep fried chicken, tenders, bone-in &amp; boneless wings and homestyle sides. Dine-in, carry-out &amp; delivery in King, Waupaca WI. Open Wednesday–Sunday.">
+<meta property="og:url" content="https://liambloedow.github.io/chicken-shack-waupaca/">
+<meta property="og:image" content="https://liambloedow.github.io/chicken-shack-waupaca/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Basket of saucy chicken wings with crispy fries and dipping sauces from The Chicken Shack">
+<meta property="og:locale" content="en_US">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Chicken Shack — Fried Chicken &amp; Wings in King / Waupaca, WI">
+<meta name="twitter:description" content="Deep fried chicken, tenders, bone-in &amp; boneless wings and homestyle sides. Dine-in, carry-out &amp; delivery. Open Wednesday–Sunday.">
+<meta name="twitter:image" content="https://liambloedow.github.io/chicken-shack-waupaca/assets/og-image.jpg">
+<meta name="twitter:image:alt" content="Basket of saucy chicken wings with crispy fries and dipping sauces from The Chicken Shack">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "The Chicken Shack",
+  "description": "Deep fried chicken, chicken tenders, bone-in and boneless wings, grilled chicken and homestyle sides in King, Waupaca, Wisconsin. Dine-in, carry-out and delivery.",
+  "url": "https://liambloedow.github.io/chicken-shack-waupaca/",
+  "image": "https://liambloedow.github.io/chicken-shack-waupaca/assets/og-image.jpg",
+  "telephone": "+1-715-942-2533",
+  "email": "thechickenshack2026@gmail.com",
+  "servesCuisine": ["Fried Chicken", "Chicken Wings", "American"],
+  "priceRange": "$",
+  "currenciesAccepted": "USD",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "N2717 County Rd QQ",
+    "addressLocality": "Waupaca",
+    "addressRegion": "WI",
+    "postalCode": "54981",
+    "addressCountry": "US"
+  },
+  "sameAs": ["https://www.facebook.com/profile.php?id=61560247795328"],
+  "openingHoursSpecification": [
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "11:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday"], "opens": "00:00", "closes": "00:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Wednesday", "Thursday"], "opens": "16:00", "closes": "19:00" },
+    { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Friday", "Saturday"], "opens": "11:00", "closes": "19:00" }
+  ]
+}
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
@@ -132,6 +183,13 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .info-card h3{font-size:1rem;color:var(--red);margin-bottom:6px;letter-spacing:.5px;font-family:'Bungee',sans-serif}
 .info-card p{font-weight:700;font-size:.98rem}
 .info-card a{color:var(--red-dark);font-weight:800}
+/* day-by-day hours (same card, existing palette) */
+.hours-list{list-style:none;margin-top:10px;display:grid;gap:7px;text-align:left}
+.hours-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:5px;border-bottom:2px dotted rgba(43,27,18,.22)}
+.hours-list li:last-child{border-bottom:none;padding-bottom:0}
+.hours-list .day{font-family:'Bungee',sans-serif;font-size:.74rem;letter-spacing:.5px;color:var(--red)}
+.hours-list .time{font-weight:800;font-size:.9rem;white-space:nowrap}
+.hours-list .closed{background:var(--trim);color:var(--red-dark);border:2px solid var(--ink);border-radius:999px;padding:1px 12px;font-size:.8rem;font-weight:800;letter-spacing:.5px}
 
 /* food */
 .food{background:var(--butter)}
@@ -164,6 +222,24 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .menu-cat:hover{transform:translateY(-5px);background:var(--red-dark)}
 .menu-cat .em{font-size:2.3rem;display:block;margin-bottom:8px}
 .menu-cat span{font-family:'Bungee',sans-serif;color:var(--white);font-size:.9rem;letter-spacing:.5px}
+/* full menu — same red/gold card language as .menu-cat */
+.menu-note{background:var(--gold);color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:12px 18px;font-weight:800;font-size:.95rem;margin:0 auto 12px;max-width:560px;box-shadow:4px 4px 0 rgba(0,0,0,.35)}
+.menu-serve{font-family:'Bungee',sans-serif;color:var(--trim);font-size:.82rem;letter-spacing:1.5px;margin-bottom:6px}
+.menu-group{margin-top:34px;text-align:left}
+.menu-group h4{font-family:'Alfa Slab One',serif;color:var(--gold);font-size:1.25rem;margin-bottom:3px}
+.menu-sub{color:var(--trim);font-weight:700;font-size:.9rem;margin:0 0 13px}
+.price-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--red);border:3px solid var(--gold);border-radius:14px;overflow:hidden}
+.price-table th,.price-table td{padding:10px 12px;text-align:center;font-weight:800;font-size:.95rem;border-bottom:2px solid rgba(242,169,59,.28)}
+.price-table thead th{font-family:'Bungee',sans-serif;font-size:.74rem;letter-spacing:1px;color:var(--ink);background:var(--gold)}
+.price-table tbody th{font-family:'Bungee',sans-serif;font-size:.8rem;color:var(--gold);text-align:left}
+.price-table td{color:var(--white)}
+.price-table tbody tr:last-child th,.price-table tbody tr:last-child td{border-bottom:none}
+.price-list{list-style:none;display:grid;gap:9px}
+.price-list li{display:flex;justify-content:space-between;align-items:baseline;gap:14px;background:var(--red);border:3px solid var(--gold);border-radius:12px;padding:11px 16px}
+.price-list .n{font-weight:800;font-size:.95rem;color:var(--white)}
+.price-list .p{font-family:'Bungee',sans-serif;font-size:.82rem;color:var(--gold);white-space:nowrap;text-align:right}
+.sauce-chips{display:flex;flex-wrap:wrap;gap:9px}
+.sauce-chips span{background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:6px 14px;font-weight:800;font-size:.88rem}
 
 /* the vibe gallery */
 .vibe{background:var(--red-dark);color:var(--butter)}
@@ -236,6 +312,12 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   .nav-toggle{display:flex}
   .nav-inner{flex-wrap:wrap}
   section{padding:60px 18px}
+  .menu-board{padding:34px 18px}
+  .price-table th,.price-table td{padding:8px 5px;font-size:.85rem}
+  .price-table thead th{font-size:.66rem;letter-spacing:.5px}
+  .price-table tbody th{font-size:.72rem}
+  .price-list li{padding:10px 13px}
+  .price-list .n{font-size:.9rem}
 }
 @media (prefers-reduced-motion: reduce){
   .ticker-track,.sunburst,.hero-logo,.now-open,.bulb{animation:none}
@@ -253,7 +335,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 <div class="tophustle">
   <div class="in">
     <span>🐔 Homestyle chicken — cooked to order in King, WI</span>
-    <span>Open 7 days a week <span class="dot">•</span> <a href="tel:+17159422434">(715) 942-2434</a></span>
+    <span>Open Wed–Sun <span class="dot">•</span> <a href="tel:+17159422533">715-942-2533</a></span>
   </div>
 </div>
 
@@ -270,7 +352,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       <a href="#vibe">The Shack</a>
       <a href="#careers">Careers</a>
       <a href="#contact">Contact</a>
-      <a class="call" href="tel:+17159422434">📞 (715) 942-2434</a>
+      <a class="call" href="tel:+17159422533">📞 715-942-2533</a>
     </div>
   </div>
 </nav>
@@ -290,7 +372,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
     <p class="sub">Waupaca's newest chicken joint — homestyle chicken, made the way it should be.</p>
     <div class="btn-row">
       <a class="btn btn-gold" href="#menu">See the Menu</a>
-      <a class="btn btn-cream" href="tel:+17159422434">Call to Order</a>
+      <a class="btn btn-cream" href="tel:+17159422533">Call to Order</a>
     </div>
   </div>
   <div class="awning" aria-hidden="true"></div>
@@ -298,8 +380,8 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 
 <div class="ticker" aria-hidden="true">
   <div class="ticker-track">
-    <span>HOMESTYLE CHICKEN</span><span>DEEP FRIED CHICKEN</span><span>CHICKEN WINGS</span><span>GRILLED CHICKEN</span><span>OPEN 7 DAYS A WEEK</span>
-    <span>HOMESTYLE CHICKEN</span><span>DEEP FRIED CHICKEN</span><span>CHICKEN WINGS</span><span>GRILLED CHICKEN</span><span>OPEN 7 DAYS A WEEK</span>
+    <span>HOMESTYLE CHICKEN</span><span>DEEP FRIED CHICKEN</span><span>CHICKEN WINGS</span><span>GRILLED CHICKEN</span><span>OPEN WED–SUN</span>
+    <span>HOMESTYLE CHICKEN</span><span>DEEP FRIED CHICKEN</span><span>CHICKEN WINGS</span><span>GRILLED CHICKEN</span><span>OPEN WED–SUN</span>
   </div>
 </div>
 
@@ -308,17 +390,25 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
     <div class="info-card">
       <div class="ico">📍</div>
       <h3>Find Us</h3>
-      <p>N2723 County Hwy QQ<br>Waupaca, WI 54981</p>
+      <p>N2717 County Rd QQ<br>Waupaca, WI 54981</p>
     </div>
     <div class="info-card">
       <div class="ico">🕐</div>
       <h3>Hours</h3>
-      <p>Open 7 days a week<br><a href="tel:+17159422434">Call for today's hours</a></p>
+      <ul class="hours-list">
+        <li><span class="day">Sunday</span><span class="time">11:00 AM – 7:00 PM</span></li>
+        <li><span class="day">Monday</span><span class="time closed">Closed</span></li>
+        <li><span class="day">Tuesday</span><span class="time closed">Closed</span></li>
+        <li><span class="day">Wednesday</span><span class="time">4:00 PM – 7:00 PM</span></li>
+        <li><span class="day">Thursday</span><span class="time">4:00 PM – 7:00 PM</span></li>
+        <li><span class="day">Friday</span><span class="time">11:00 AM – 7:00 PM</span></li>
+        <li><span class="day">Saturday</span><span class="time">11:00 AM – 7:00 PM</span></li>
+      </ul>
     </div>
     <div class="info-card">
       <div class="ico">📞</div>
       <h3>Call Us</h3>
-      <p><a href="tel:+17159422434">(715) 942-2434</a><br>Dine in or carry out</p>
+      <p><a href="tel:+17159422533">715-942-2533</a><br>Dine-in · Carry-out · Delivery</p>
     </div>
   </div>
 </div>
@@ -345,17 +435,94 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 <section class="menu" id="menu">
   <div class="wrap" style="text-align:center">
     <span class="eyebrow">The menu</span>
-    <h2>Full menu coming soon</h2>
+    <h2>Our menu</h2>
     <div class="menu-board reveal">
-      <h3>We're putting the finishing touches on it!</h3>
-      <p>Our full menu with prices is on its way. In the meantime, give us a call and we'll tell you everything that's hot out of the kitchen today.</p>
-      <div class="menu-cats">
-        <div class="menu-cat"><span class="em">🍗</span><span>Deep Fried Chicken</span></div>
-        <div class="menu-cat"><span class="em">🔥</span><span>Chicken Wings</span></div>
-        <div class="menu-cat"><span class="em">🍽️</span><span>Grilled Chicken</span></div>
-        <div class="menu-cat"><span class="em">🍟</span><span>Fries &amp; Sides</span></div>
+      <div class="menu-note">Must speak to someone in person to place an order</div>
+      <p class="menu-serve">DINE-IN · CARRY-OUT · DELIVERY</p>
+
+      <div class="menu-group">
+        <h4>Chicken Dinners</h4>
+        <p class="menu-sub">All include fries, coleslaw &amp; roll</p>
+        <table class="price-table">
+          <thead>
+            <tr><th scope="col">Pieces</th><th scope="col">White</th><th scope="col">Dark</th><th scope="col">Mixed</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">2 pc</th><td>$6.99</td><td>$4.99</td><td>$5.99</td></tr>
+            <tr><th scope="row">4 pc</th><td>$13.99</td><td>$9.99</td><td>$12.99</td></tr>
+            <tr><th scope="row">8 pc</th><td>$15.99</td><td>$12.99</td><td>$13.99</td></tr>
+            <tr><th scope="row">12 pc</th><td>$19.99</td><td>$16.99</td><td>$17.99</td></tr>
+            <tr><th scope="row">16 pc</th><td>$24.99</td><td>$20.99</td><td>$22.99</td></tr>
+            <tr><th scope="row">24 pc</th><td>$46.99</td><td>$42.99</td><td>$40.99</td></tr>
+          </tbody>
+        </table>
       </div>
-      <a class="btn btn-gold" href="tel:+17159422434">Call for Today's Menu</a>
+
+      <div class="menu-group">
+        <h4>Tender Dinners</h4>
+        <p class="menu-sub">Include fries, coleslaw &amp; roll</p>
+        <ul class="price-list">
+          <li><span class="n">3 pc</span><span class="p">$7.99</span></li>
+          <li><span class="n">6 pc</span><span class="p">$9.99</span></li>
+          <li><span class="n">12 pc</span><span class="p">$18.99</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-group">
+        <h4>Wings</h4>
+        <table class="price-table">
+          <thead>
+            <tr><th scope="col">Wings</th><th scope="col">3 pc</th><th scope="col">6 pc</th><th scope="col">12 pc</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Bone-In</th><td>$3.99</td><td>$7.99</td><td>$15.99</td></tr>
+            <tr><th scope="row">Boneless</th><td>$2.99 <small>(4 pc)</small></td><td>$5.99</td><td>$10.99</td></tr>
+          </tbody>
+        </table>
+        <p class="menu-sub" style="margin:13px 0 0">Boneless wings start at a 4 pc order.</p>
+      </div>
+
+      <div class="menu-group">
+        <h4>Sauces</h4>
+        <div class="sauce-chips">
+          <span>Buffalo</span><span>Honey Mustard</span><span>BBQ</span><span>Sweet Chili</span><span>Ranch</span><span>Spicy Honey</span><span>Garlic Parmesan</span>
+        </div>
+      </div>
+
+      <div class="menu-group">
+        <h4>Sides</h4>
+        <ul class="price-list">
+          <li><span class="n">Mac &amp; Cheese</span><span class="p">Reg $5.99 / Lg $8.99</span></li>
+          <li><span class="n">Coleslaw</span><span class="p">Reg $3.99 / Lg $6.99</span></li>
+          <li><span class="n">Mashed Potatoes &amp; Gravy</span><span class="p">Reg $5.99 / Lg $8.99</span></li>
+          <li><span class="n">Sour Cream Wedges</span><span class="p">Basket $3.99 / Box $6.99</span></li>
+          <li><span class="n">Crinkle Cut Fries</span><span class="p">Basket $3.99 / Box $6.99</span></li>
+          <li><span class="n">Hashbrown Disc</span><span class="p">Basket $3.99 / Box $6.99</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-group">
+        <h4>À La Carte Chicken</h4>
+        <ul class="price-list">
+          <li><span class="n">Wing</span><span class="p">$0.75</span></li>
+          <li><span class="n">Leg</span><span class="p">$1.50</span></li>
+          <li><span class="n">Thigh</span><span class="p">$2.25</span></li>
+          <li><span class="n">Breast</span><span class="p">$3.00</span></li>
+        </ul>
+      </div>
+
+      <div class="menu-group">
+        <h4>Drinks</h4>
+        <p class="menu-sub">Pepsi Products &amp; Coffee</p>
+        <ul class="price-list">
+          <li><span class="n">Adult</span><span class="p">$2.99</span></li>
+          <li><span class="n">Kids</span><span class="p">$1.99</span></li>
+        </ul>
+      </div>
+
+      <div style="margin-top:34px">
+        <a class="btn btn-gold" href="tel:+17159422533">Call to Order · 715-942-2533</a>
+      </div>
     </div>
   </div>
 </section>
@@ -369,7 +536,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   <div class="wrap">
     <div class="gallery reveal">
       <figure class="big">
-        <img src="assets/exterior-evening.jpg" alt="The Chicken Shack storefront at dusk with string lights and neon open sign">
+        <img src="assets/exterior-evening.jpg" alt="The Chicken Shack storefront in King, Waupaca WI at dusk — red trim, patio string lights and a neon OPEN sign">
         <figcaption>The Shack at dusk — you can't miss the red.</figcaption>
       </figure>
       <figure>
@@ -377,12 +544,12 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
         <figcaption>Cozy booths &amp; warm wood inside.</figcaption>
       </figure>
       <figure>
-        <img src="assets/food-basket.jpg" alt="Basket of saucy wings and fries">
+        <img src="assets/food-basket.jpg" alt="Basket of sauced chicken wings with crinkle cut fries and a side of ranch">
         <figcaption>Hot baskets, out of the fryer.</figcaption>
       </figure>
     </div>
     <div style="text-align:center;margin-top:30px">
-      <a class="btn btn-gold" href="https://www.google.com/maps/search/?api=1&query=N2723+County+Hwy+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Get Directions</a>
+      <a class="btn btn-gold" href="https://www.google.com/maps/search/?api=1&query=N2717+County+Rd+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Get Directions</a>
     </div>
   </div>
 </section>
@@ -411,8 +578,8 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       <div class="job"><span class="em">🚗</span><h3>Delivery Drivers</h3><p>Keep King fed on the go</p></div>
     </div>
     <div class="hire-note reveal">
-      <p><strong>Walk-in interviews:</strong> Monday–Friday, 11am–4pm — just stop by!</p>
-      <a class="btn btn-gold" href="mailto:chicken.shack.waupaca@gmail.com?subject=Job%20Application">Apply by Email</a>
+      <p><strong>How to apply:</strong> Email us at <a href="mailto:thechickenshack2026@gmail.com?subject=Job%20Application">thechickenshack2026@gmail.com</a> — tell us the role you want and a bit about yourself.</p>
+      <a class="btn btn-gold" href="mailto:thechickenshack2026@gmail.com?subject=Job%20Application">Apply by Email</a>
     </div>
   </div>
 </section>
@@ -422,17 +589,19 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
     <span class="eyebrow">Say hello</span>
     <h2>Come see us in King</h2>
     <div class="contact-grid" style="margin-top:28px">
-      <div class="photo-frame"><img src="assets/exterior-evening.jpg" alt="The Chicken Shack at dusk with string lights and a neon open sign" style="height:100%;object-fit:cover"></div>
+      <div class="photo-frame"><img src="assets/exterior-evening.jpg" alt="The Chicken Shack at N2717 County Rd QQ in Waupaca, WI — storefront patio with string lights and a neon OPEN sign" style="height:100%;object-fit:cover"></div>
       <div class="contact-card">
         <h3>📍 Address</h3>
-        <p>N2723 County Hwy QQ<br>Waupaca, WI 54981</p>
+        <p>N2717 County Rd QQ<br>Waupaca, WI 54981</p>
         <h3>📞 Phone</h3>
-        <p><a href="tel:+17159422434">(715) 942-2434</a></p>
+        <p><a href="tel:+17159422533">715-942-2533</a></p>
         <h3>✉️ Email</h3>
-        <p><a href="mailto:chicken.shack.waupaca@gmail.com">chicken.shack.waupaca@gmail.com</a></p>
+        <p><a href="mailto:thechickenshack2026@gmail.com">thechickenshack2026@gmail.com</a></p>
+        <h3>🍽️ Catering</h3>
+        <p>Feeding a crowd? Send catering inquiries to <a href="mailto:thechickenshack2026@gmail.com?subject=Catering%20Inquiry">thechickenshack2026@gmail.com</a></p>
         <h3>👍 Facebook</h3>
         <p><a href="https://www.facebook.com/profile.php?id=61560247795328" target="_blank" rel="noopener">Chicken Shack Waupaca</a></p>
-        <a class="btn btn-gold map-btn" href="https://www.google.com/maps/search/?api=1&query=N2723+County+Hwy+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn btn-gold map-btn" href="https://www.google.com/maps/search/?api=1&query=N2717+County+Rd+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Open in Google Maps</a>
       </div>
     </div>
   </div>
@@ -441,13 +610,13 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 <div class="stripes-bar" aria-hidden="true"></div>
 
 <footer>
-  <img class="flogo" src="assets/logo-clean.png?v=2" alt="The Chicken Shack">
+  <img class="flogo" src="assets/logo-clean.png?v=2" alt="The Chicken Shack logo">
   <p class="slab">The Chicken Shack — Waupaca, WI</p>
-  <p>N2723 County Hwy QQ, Waupaca, WI 54981 · <a href="tel:+17159422434">(715) 942-2434</a></p>
+  <p>N2717 County Rd QQ, Waupaca, WI 54981 · <a href="tel:+17159422533">715-942-2533</a></p>
   <div class="socials">
     <a href="https://www.facebook.com/profile.php?id=61560247795328" target="_blank" rel="noopener">👍 Facebook</a>
-    <a href="tel:+17159422434">📞 Call</a>
-    <a href="mailto:chicken.shack.waupaca@gmail.com">✉️ Email</a>
+    <a href="tel:+17159422533">📞 Call</a>
+    <a href="mailto:thechickenshack2026@gmail.com">✉️ Email</a>
   </div>
   <p style="margin-top:10px;font-size:.9rem">Chicken! Homestyle chicken. 🐔</p>
 </footer>

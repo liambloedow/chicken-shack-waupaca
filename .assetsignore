@@ -1,0 +1,9 @@
+**/.git
+**/.github
+**/node_modules
+**/.DS_Store
+wrangler.jsonc
+.assetsignore
+package.json
+package-lock.json
+README.md

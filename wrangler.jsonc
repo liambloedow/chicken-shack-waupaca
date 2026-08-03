@@ -1,0 +1,11 @@
+{
+  // The Chicken Shack — static site served as a Cloudflare Worker with static assets.
+  // The site files live at the repo root so that the existing GitHub Pages
+  // deployment keeps working as a fallback. Non-site files (.git, README, config)
+  // are excluded from upload via .assetsignore.
+  "name": "chicken-shack",
+  "compatibility_date": "2026-08-03",
+  "assets": {
+    "directory": "./"
+  }
+}
