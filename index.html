@@ -251,6 +251,7 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .gallery figure.big{grid-row:span 2}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .gallery figure:hover img{transform:scale(1.06)}
+.gallery .img-sandwich{object-position:60% center}
 .gallery figcaption{position:absolute;left:0;bottom:0;right:0;background:linear-gradient(transparent,rgba(29,19,12,.9));color:var(--trim);font-weight:800;font-size:.9rem;padding:26px 16px 12px}
 
 /* why strip */
@@ -288,6 +289,28 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .contact-card p{font-weight:700}
 .contact-card a{color:var(--red-dark);font-weight:800}
 .map-btn{margin-top:24px}
+
+/* contact form (same card language as .contact-card) */
+.contact-form-wrap{background:var(--white);border:4px solid var(--ink);border-radius:16px;box-shadow:8px 8px 0 var(--gold);padding:34px;color:var(--ink);margin-top:44px}
+.contact-form-wrap .form-heading{color:var(--red);font-size:1.05rem;margin:0 0 8px;font-family:'Bungee',sans-serif}
+.contact-form-wrap .form-intro{font-weight:700;margin-bottom:22px}
+#contact-form .field{display:grid;gap:6px;margin-bottom:16px}
+#contact-form label{font-family:'Bungee',sans-serif;font-size:.74rem;letter-spacing:.5px;color:var(--red)}
+#contact-form .req{font-family:'Nunito',sans-serif;font-weight:800;font-size:.8rem;letter-spacing:0;color:var(--red-dark)}
+#contact-form input,#contact-form textarea{width:100%;font-family:'Nunito',sans-serif;font-size:1rem;font-weight:700;color:var(--ink);background:var(--butter);border:3px solid var(--ink);border-radius:12px;padding:12px 14px;min-height:48px}
+#contact-form textarea{min-height:132px;resize:vertical;line-height:1.5}
+#contact-form input[aria-invalid="true"],#contact-form textarea[aria-invalid="true"]{border-color:var(--red-dark);background:var(--white)}
+#contact-form .err{color:var(--red-dark);font-weight:800;font-size:.88rem}
+#contact-form .err:empty{display:none}
+#contact-form .form-hint,#contact-form .privacy-line{font-weight:700;font-size:.9rem;margin-bottom:18px}
+#contact-form .privacy-line{margin-top:6px}
+#contact-form button[type="submit"]{min-height:48px;cursor:pointer}
+#contact-form button[disabled]{opacity:.7;cursor:progress}
+#contact-form .form-status{margin-top:16px;font-weight:800}
+#contact-form .form-status.error{color:var(--red-dark)}
+.contact-form-wrap .form-success{font-weight:800;font-size:1.05rem;color:var(--red-dark)}
+/* honeypot: offscreen wrapper, input itself stays displayed */
+.hp-wrap{position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden}
 
 /* footer */
 footer{background:var(--red-dark);color:var(--trim);text-align:center;padding:44px 20px;font-weight:700;position:relative}
@@ -415,7 +438,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 
 <section class="food" id="food">
   <div class="wrap split reveal">
-    <div class="photo-frame"><img src="assets/food-basket.jpg" alt="Basket of saucy chicken wings with crispy fries and dipping sauces"></div>
+    <div class="photo-frame"><img src="assets/food-basket-gold.jpg" alt="Basket of golden fried chicken with seasoned potato wedges and a side of cheese sauce from The Chicken Shack in Waupaca, WI"></div>
     <div style="position:relative">
       <span class="tag">HOMESTYLE<br>CHICKEN</span>
       <span class="eyebrow">What we do</span>
@@ -535,17 +558,13 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   </div>
   <div class="wrap">
     <div class="gallery reveal">
-      <figure class="big">
-        <img src="assets/exterior-evening.jpg" alt="The Chicken Shack storefront in King, Waupaca WI at dusk — red trim, patio string lights and a neon OPEN sign">
-        <figcaption>The Shack at dusk — you can't miss the red.</figcaption>
+      <figure>
+        <img class="img-sandwich" src="assets/sandwich-chips.jpg" alt="Crispy fried chicken sandwich cut in half with melted cheese, served with a bag of plain potato chips">
+        <figcaption>Crispy chicken sandwich, chips on the side.</figcaption>
       </figure>
       <figure>
         <img src="assets/interior.jpg" alt="Inside the Chicken Shack dining room with wood booths and stained-glass lamps">
         <figcaption>Cozy booths &amp; warm wood inside.</figcaption>
-      </figure>
-      <figure>
-        <img src="assets/food-basket.jpg" alt="Basket of sauced chicken wings with crinkle cut fries and a side of ranch">
-        <figcaption>Hot baskets, out of the fryer.</figcaption>
       </figure>
     </div>
     <div style="text-align:center;margin-top:30px">
@@ -589,7 +608,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
     <span class="eyebrow">Say hello</span>
     <h2>Come see us in King</h2>
     <div class="contact-grid" style="margin-top:28px">
-      <div class="photo-frame"><img src="assets/exterior-evening.jpg" alt="The Chicken Shack at N2717 County Rd QQ in Waupaca, WI — storefront patio with string lights and a neon OPEN sign" style="height:100%;object-fit:cover"></div>
+      <div class="photo-frame"><img src="assets/food-basket-red.jpg" alt="Red basket of fried chicken with seasoned potato wedges and cheese sauce from The Chicken Shack in Waupaca, WI" style="height:100%;object-fit:cover"></div>
       <div class="contact-card">
         <h3>📍 Address</h3>
         <p>N2717 County Rd QQ<br>Waupaca, WI 54981</p>
@@ -603,6 +622,48 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
         <p><a href="https://www.facebook.com/profile.php?id=61560247795328" target="_blank" rel="noopener">Chicken Shack Waupaca</a></p>
         <a class="btn btn-gold map-btn" href="https://www.google.com/maps/search/?api=1&query=N2717+County+Rd+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Open in Google Maps</a>
       </div>
+    </div>
+
+    <div class="contact-form-wrap">
+      <h3 class="form-heading">Send us a message</h3>
+      <p class="form-intro">Questions, catering, or a big order? Send us a note and we will get back to you. You can always call or email us using the links above.</p>
+      <form id="contact-form" novalidate>
+        <div class="hp-wrap" aria-hidden="true">
+          <label for="cf-company">Company</label>
+          <input type="text" id="cf-company" name="company" tabindex="-1" autocomplete="off">
+        </div>
+
+        <div class="field">
+          <label for="cf-name">Name <span class="req">(required)</span></label>
+          <input type="text" id="cf-name" name="name" autocomplete="name" required aria-describedby="err-name">
+          <span class="err" id="err-name" role="alert"></span>
+        </div>
+
+        <div class="field">
+          <label for="cf-phone">Phone</label>
+          <input type="tel" id="cf-phone" name="phone" autocomplete="tel" inputmode="tel" aria-describedby="err-phone">
+          <span class="err" id="err-phone" role="alert"></span>
+        </div>
+
+        <div class="field">
+          <label for="cf-email">Email</label>
+          <input type="email" id="cf-email" name="email" autocomplete="email" inputmode="email" aria-describedby="err-email">
+          <span class="err" id="err-email" role="alert"></span>
+        </div>
+
+        <p class="form-hint">Please give us either a phone number or an email so we can reply.</p>
+
+        <div class="field">
+          <label for="cf-message">Message <span class="req">(required)</span></label>
+          <textarea id="cf-message" name="message" rows="5" required aria-describedby="err-message"></textarea>
+          <span class="err" id="err-message" role="alert"></span>
+        </div>
+
+        <p class="privacy-line">We never share your information. Messages go straight to thechickenshack2026@gmail.com</p>
+
+        <button type="submit" class="btn btn-gold" id="cf-submit">Send Message</button>
+        <p class="form-status" id="cf-status" role="alert"></p>
+      </form>
     </div>
   </div>
 </section>
@@ -659,6 +720,138 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   }, {threshold: 0.12, rootMargin: '0px 0px -8% 0px'});
 
   targets.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+<script>
+/* Contact form -> Google Apps Script endpoint */
+(function(){
+  var GAS_URL = 'https://script.google.com/macros/s/AKfycbwmyk5f1lFbYIiESSKk0vdWGXiR1KZGfQF1y21u6vo-hIHGGYDe4kYawzLYI2ZY13pm2w/exec';
+  var PHONE = '715-942-2533';
+  var FIELDS = ['name','phone','email','message'];
+  var TIMEOUT_MS = 45000;     /* generous, so a cold start is not cut short */
+  var RETRY_DELAY_MS = 1500;
+
+  var form = document.getElementById('contact-form');
+  if(!form) return;
+  var btn = document.getElementById('cf-submit');
+  var statusEl = document.getElementById('cf-status');
+
+  function el(id){ return document.getElementById(id); }
+
+  function setErr(field, msg){
+    var input = el('cf-'+field), err = el('err-'+field);
+    if(err) err.textContent = msg || '';
+    if(!input) return;
+    if(msg) input.setAttribute('aria-invalid','true');
+    else input.removeAttribute('aria-invalid');
+  }
+
+  function values(){
+    return {
+      name: el('cf-name').value.trim(),
+      phone: el('cf-phone').value.trim(),
+      email: el('cf-email').value.trim(),
+      message: el('cf-message').value.trim(),
+      company: el('cf-company').value
+    };
+  }
+
+  function looksLikeEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function looksLikePhone(v){ return v.replace(/[^0-9]/g,'').length >= 10; }
+
+  function validate(v){
+    FIELDS.forEach(function(f){ setErr(f,''); });
+    var ok = true;
+    if(!v.name){ setErr('name','Please tell us your name.'); ok = false; }
+    if(!v.message){ setErr('message','Please tell us what you need.'); ok = false; }
+    if(!v.phone && !v.email){
+      setErr('phone','Please add a phone number or an email so we can reply.');
+      ok = false;
+    }
+    if(v.email && !looksLikeEmail(v.email)){ setErr('email','Please check that email address.'); ok = false; }
+    if(v.phone && !looksLikePhone(v.phone)){ setErr('phone','Please enter a 10 digit phone number.'); ok = false; }
+    return ok;
+  }
+
+  /* inline validation: re-check a field once it has been marked bad, and on blur */
+  FIELDS.forEach(function(f){
+    var input = el('cf-'+f);
+    input.addEventListener('blur', function(){ validate(values()); });
+    input.addEventListener('input', function(){
+      if(input.getAttribute('aria-invalid')) validate(values());
+    });
+  });
+
+  function showSuccess(){
+    var p = document.createElement('p');
+    p.className = 'form-success';
+    p.setAttribute('role','status');
+    p.textContent = 'Thanks! We got your message and will get back to you soon.';
+    form.parentNode.replaceChild(p, form);
+  }
+
+  function showError(){
+    btn.disabled = false;
+    btn.textContent = 'Send Message';
+    statusEl.className = 'form-status error';
+    statusEl.textContent = 'Sorry, that did not send. Please call us at ' + PHONE + ' and we will take care of you.';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    statusEl.textContent = '';
+    statusEl.className = 'form-status';
+
+    var v = values();
+    if(!validate(v)){
+      var firstBad = form.querySelector('[aria-invalid="true"]');
+      if(firstBad) firstBad.focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Sending...';
+
+    var payload = { name: v.name, email: v.email, phone: v.phone, message: v.message, company: v.company };
+
+    /* Apps Script can cold start slowly on a low traffic site, so the first
+       attempt is the one most likely to fail. Retry once, quietly, keeping the
+       button in its pending state so the visitor sees one continuous "Sending...". */
+    send(payload)
+      .then(function(){ showSuccess(); })
+      .catch(function(){ showError(); });
+  });
+
+  function postOnce(payload){
+    var controller = (typeof AbortController !== 'undefined') ? new AbortController() : null;
+    var timer = null;
+    var opts = {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify(payload)
+    };
+    if(controller){
+      opts.signal = controller.signal;
+      timer = setTimeout(function(){ controller.abort(); }, TIMEOUT_MS);
+    }
+    function done(){ if(timer) clearTimeout(timer); }
+    return fetch(GAS_URL, opts)
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        done();
+        if(data && data.ok) return data;
+        throw new Error(data && data.error ? data.error : 'not ok');
+      })
+      .catch(function(err){ done(); throw err; });
+  }
+
+  function send(payload){
+    return postOnce(payload).catch(function(){
+      return new Promise(function(resolve){ setTimeout(resolve, RETRY_DELAY_MS); })
+        .then(function(){ return postOnce(payload); });
+    });
+  }
 })();
 </script>
 
