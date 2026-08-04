@@ -5,6 +5,8 @@
 **/.DS_Store
 wrangler.jsonc
 .assetsignore
+.gitignore
+.nojekyll
 package.json
 package-lock.json
 README.md
