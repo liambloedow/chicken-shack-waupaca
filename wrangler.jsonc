@@ -4,7 +4,7 @@
   // deployment keeps working as a fallback. Non-site files (.git, README, config)
   // are excluded from upload via .assetsignore.
   "name": "chicken-shack",
-  "account_id": "5b121e52e7b77073ecd8179f4f89be1a",
+  "account_id": "8ce046368db64b617961de23fe3fbb47",
   "compatibility_date": "2026-08-03",
   "assets": {
     "directory": "./"
