@@ -6,7 +6,7 @@
 <title>The Chicken Shack — Fried Chicken &amp; Wings in King / Waupaca, WI</title>
 <meta name="description" content="The Chicken Shack in King, Waupaca WI. Deep fried chicken, chicken tenders, bone-in &amp; boneless wings, grilled chicken, mac &amp; cheese and more. Dine-in, carry-out &amp; delivery. Open Wednesday–Sunday. 715-942-2533">
 <link rel="canonical" href="https://chickenshackwi.com/">
-<link rel="icon" href="assets/favicon.png" type="image/png">
+<link rel="icon" href="assets/favicon-96.png" type="image/png">
 
 <!-- Open Graph -->
 <meta property="og:type" content="website">
@@ -44,7 +44,7 @@
   "currenciesAccepted": "USD",
   "address": {
     "@type": "PostalAddress",
-    "streetAddress": "N2717 County Rd QQ",
+    "streetAddress": "N 2717 County Rd QQ",
     "addressLocality": "Waupaca",
     "addressRegion": "WI",
     "postalCode": "54981",
@@ -59,11 +59,30 @@
   ]
 }
 </script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Bungee&family=Nunito:ital,wght@0,400;0,600;0,700;0,800;0,900;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="preload" href="assets/fonts/alfaslabone-400-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/nunito-800-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/bungee-400-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script>document.documentElement.classList.add('js')</script>
 <style>
+/* self-hosted fonts (was Google Fonts CDN) */
+@font-face{font-family:'Alfa Slab One';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/alfaslabone-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Alfa Slab One';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/alfaslabone-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Bungee';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/bungee-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Bungee';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/bungee-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:700;font-display:swap;src:url(assets/fonts/nunito-700i-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:700;font-display:swap;src:url(assets/fonts/nunito-700i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:900;font-display:swap;src:url(assets/fonts/nunito-900i-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:italic;font-weight:900;font-display:swap;src:url(assets/fonts/nunito-900i-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/nunito-400-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:400;font-display:swap;src:url(assets/fonts/nunito-400-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/nunito-600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:600;font-display:swap;src:url(assets/fonts/nunito-600-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/nunito-700-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:700;font-display:swap;src:url(assets/fonts/nunito-700-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/nunito-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:800;font-display:swap;src:url(assets/fonts/nunito-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:900;font-display:swap;src:url(assets/fonts/nunito-900-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Nunito';font-style:normal;font-weight:900;font-display:swap;src:url(assets/fonts/nunito-900-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 :root{
   --red:#B8271F;
   --red-dark:#7E1610;
@@ -79,7 +98,9 @@ html{scroll-behavior:smooth}
 body{font-family:'Nunito',sans-serif;color:var(--ink);background:var(--butter);line-height:1.6;font-size:17px;overflow-x:hidden}
 h1,h2,h3,.slab{font-family:'Alfa Slab One',serif;font-weight:400;line-height:1.12}
 .bungee{font-family:'Bungee',sans-serif}
-img{display:block;max-width:100%}
+img{display:block;max-width:100%;height:auto}
+/* picture generates no box, so layout matches the previous bare <img> exactly */
+picture{display:contents}
 a{color:inherit}
 
 /* ---------- shared texture helpers ---------- */
@@ -182,7 +203,7 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .info-card{background:var(--white);border:4px solid var(--ink);border-radius:16px;box-shadow:6px 6px 0 var(--ink);padding:26px 22px;text-align:center;transition:transform .15s, box-shadow .15s}
 .info-card:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink)}
 .info-card .ico{font-size:2.1rem;margin-bottom:8px}
-.info-card h3{font-size:1rem;color:var(--red);margin-bottom:6px;letter-spacing:.5px;font-family:'Bungee',sans-serif}
+.info-card h2{font-size:1rem;color:var(--red);margin-bottom:6px;letter-spacing:.5px;font-family:'Bungee',sans-serif}
 .info-card p{font-weight:700;font-size:.98rem}
 .info-card a{color:var(--red-dark);font-weight:800}
 /* day-by-day hours (same card, existing palette) */
@@ -228,7 +249,7 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .menu-note{background:var(--gold);color:var(--ink);border:3px solid var(--ink);border-radius:12px;padding:12px 18px;font-weight:800;font-size:.95rem;margin:0 auto 12px;max-width:560px;box-shadow:4px 4px 0 rgba(0,0,0,.35)}
 .menu-serve{font-family:'Bungee',sans-serif;color:var(--trim);font-size:.82rem;letter-spacing:1.5px;margin-bottom:6px}
 .menu-group{margin-top:34px;text-align:left}
-.menu-group h4{font-family:'Alfa Slab One',serif;color:var(--gold);font-size:1.25rem;margin-bottom:3px}
+.menu-group h3{font-family:'Alfa Slab One',serif;color:var(--gold);font-size:1.25rem;margin-bottom:3px;line-height:1.6}
 .menu-sub{color:var(--trim);font-weight:700;font-size:.9rem;margin:0 0 13px}
 .price-table{width:100%;border-collapse:separate;border-spacing:0;background:var(--red);border:3px solid var(--gold);border-radius:14px;overflow:hidden}
 .price-table th,.price-table td{padding:10px 12px;text-align:center;font-weight:800;font-size:.95rem;border-bottom:2px solid rgba(242,169,59,.28)}
@@ -338,8 +359,10 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   .nav-inner{flex-wrap:wrap}
   section{padding:60px 18px}
   .menu-board{padding:34px 18px}
+  /* badge sits over the photo corner instead of covering the heading */
+  .tag{width:86px;height:86px;font-size:.68rem;padding:8px;top:-64px;right:0}
   .price-table th,.price-table td{padding:8px 5px;font-size:.85rem}
-  .price-table thead th{font-size:.66rem;letter-spacing:.5px}
+  .price-table thead th{font-size:.75rem;letter-spacing:.5px}
   .price-table tbody th{font-size:.72rem}
   .price-list li{padding:10px 13px}
   .price-list .n{font-size:.9rem}
@@ -366,7 +389,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 
 <nav aria-label="Main">
   <div class="nav-inner">
-    <a class="nav-brand" href="#home"><span class="badge"><img src="assets/logo-clean.png?v=2" alt=""></span><span>The Chicken Shack</span></a>
+    <a class="nav-brand" href="#home"><span class="badge"><picture><source srcset="assets/logo-256.webp" type="image/webp"><img src="assets/logo-256.png" alt="" width="256" height="256" decoding="async"></picture></span><span>The Chicken Shack</span></a>
     <button class="nav-toggle" aria-label="Menu" aria-expanded="false" onclick="var l=document.getElementById('navlinks');var o=l.classList.toggle('open');this.setAttribute('aria-expanded',o)">
       <span></span><span></span><span></span>
     </button>
@@ -382,6 +405,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   </div>
 </nav>
 
+<main>
 <header class="hero" id="home">
   <div class="hero-bg" aria-hidden="true"></div>
   <div class="sunburst" aria-hidden="true"></div>
@@ -391,7 +415,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   <div class="hero-content">
     <span class="now-open">NOW OPEN IN KING!</span>
     <div class="hero-logo-wrap">
-      <img class="hero-logo" src="assets/logo-clean.png?v=2" alt="The Chicken Shack logo — Waupaca, WI. Deep fried chicken, chicken wings, grilled chicken.">
+      <picture><source srcset="assets/logo-800.webp" type="image/webp"><img class="hero-logo" src="assets/logo-800.png" width="800" height="800" alt="The Chicken Shack logo — Waupaca, WI. Deep fried chicken, chicken wings, grilled chicken." fetchpriority="high" decoding="async"></picture>
     </div>
     <h1>LIP SMACKIN' <em>GOOD!</em></h1>
     <p class="sub">Waupaca's newest chicken joint — homestyle chicken, made the way it should be.</p>
@@ -414,12 +438,12 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   <div class="info-cards stagger">
     <div class="info-card">
       <div class="ico">📍</div>
-      <h3>Find Us</h3>
-      <p>N2717 County Rd QQ<br>Waupaca, WI 54981</p>
+      <h2>Find Us</h2>
+      <p>N 2717 County Rd QQ<br>Waupaca, WI 54981</p>
     </div>
     <div class="info-card">
       <div class="ico">🕐</div>
-      <h3>Hours</h3>
+      <h2>Hours</h2>
       <ul class="hours-list">
         <li><span class="day">Sunday</span><span class="time">11:00 AM – 7:00 PM</span></li>
         <li><span class="day">Monday</span><span class="time closed">Closed</span></li>
@@ -432,7 +456,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
     </div>
     <div class="info-card">
       <div class="ico">📞</div>
-      <h3>Call Us</h3>
+      <h2>Call Us</h2>
       <p><a href="tel:+17159422533">715-942-2533</a><br>Dine-in · Carry-out · Delivery</p>
     </div>
   </div>
@@ -440,12 +464,12 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 
 <section class="food" id="food">
   <div class="wrap split reveal">
-    <div class="photo-frame"><img src="assets/food-basket-gold.jpg" alt="Basket of golden fried chicken with seasoned potato wedges and a side of cheese sauce from The Chicken Shack in Waupaca, WI"></div>
+    <div class="photo-frame"><picture><source type="image/webp" srcset="assets/food-basket-gold-700.webp 700w, assets/food-basket-gold.webp 1200w" sizes="(max-width:860px) 92vw, 46vw"><source type="image/jpeg" srcset="assets/food-basket-gold-700.jpg 700w, assets/food-basket-gold.jpg 1428w" sizes="(max-width:860px) 92vw, 46vw"><img src="assets/food-basket-gold.jpg" width="1428" height="1106" loading="lazy" decoding="async" alt="Basket of golden fried chicken with seasoned potato wedges and a side of cheese sauce from The Chicken Shack in Waupaca, WI"></picture></div>
     <div style="position:relative">
       <span class="tag">HOMESTYLE<br>CHICKEN</span>
       <span class="eyebrow">What we do</span>
       <h2>Chicken. That's the whole idea.</h2>
-      <p class="lead">No shortcuts here. Every basket is cooked to order and served hot with a heap of fries — homestyle chicken, made the way it should be.</p>
+      <p class="lead">Every basket is cooked to order and served hot with a heap of fries — homestyle chicken, made the way it should be. No shortcuts here.</p>
       <ul class="food-list">
         <li><span class="dot"></span>Deep fried chicken — crispy outside, juicy inside</li>
         <li><span class="dot"></span>Chicken wings — tossed in your favorite sauce</li>
@@ -466,7 +490,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       <p class="menu-serve">DINE-IN · CARRY-OUT · DELIVERY</p>
 
       <div class="menu-group">
-        <h4>Chicken Dinners</h4>
+        <h3>Chicken Dinners</h3>
         <p class="menu-sub">All include fries, coleslaw &amp; roll</p>
         <table class="price-table">
           <thead>
@@ -484,7 +508,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       </div>
 
       <div class="menu-group">
-        <h4>Tender Dinners</h4>
+        <h3>Tender Dinners</h3>
         <p class="menu-sub">Include fries, coleslaw &amp; roll</p>
         <ul class="price-list">
           <li><span class="n">3 pc</span><span class="p">$7.99</span></li>
@@ -494,7 +518,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       </div>
 
       <div class="menu-group">
-        <h4>Wings</h4>
+        <h3>Wings</h3>
         <table class="price-table">
           <thead>
             <tr><th scope="col">Wings</th><th scope="col">3 pc</th><th scope="col">6 pc</th><th scope="col">12 pc</th></tr>
@@ -508,14 +532,14 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       </div>
 
       <div class="menu-group">
-        <h4>Sauces</h4>
+        <h3>Sauces</h3>
         <div class="sauce-chips">
           <span>Buffalo</span><span>Honey Mustard</span><span>BBQ</span><span>Sweet Chili</span><span>Ranch</span><span>Spicy Honey</span><span>Garlic Parmesan</span>
         </div>
       </div>
 
       <div class="menu-group">
-        <h4>Sides</h4>
+        <h3>Sides</h3>
         <ul class="price-list">
           <li><span class="n">Mac &amp; Cheese</span><span class="p">Reg $5.99 / Lg $8.99</span></li>
           <li><span class="n">Coleslaw</span><span class="p">Reg $3.99 / Lg $6.99</span></li>
@@ -527,7 +551,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       </div>
 
       <div class="menu-group">
-        <h4>À La Carte Chicken</h4>
+        <h3>À La Carte Chicken</h3>
         <ul class="price-list">
           <li><span class="n">Wing</span><span class="p">$0.75</span></li>
           <li><span class="n">Leg</span><span class="p">$1.50</span></li>
@@ -537,7 +561,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       </div>
 
       <div class="menu-group">
-        <h4>Drinks</h4>
+        <h3>Drinks</h3>
         <p class="menu-sub">Pepsi Products &amp; Coffee</p>
         <ul class="price-list">
           <li><span class="n">Adult</span><span class="p">$2.99</span></li>
@@ -561,16 +585,16 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   <div class="wrap">
     <div class="gallery reveal">
       <figure>
-        <img class="img-sandwich" src="assets/sandwich-chips.jpg" alt="Crispy fried chicken sandwich cut in half with melted cheese, served with a bag of plain potato chips">
+        <picture><source type="image/webp" srcset="assets/sandwich-chips-700.webp 700w, assets/sandwich-chips.webp 1300w" sizes="(max-width:860px) 92vw, 55vw"><source type="image/jpeg" srcset="assets/sandwich-chips-700.jpg 700w, assets/sandwich-chips.jpg 1368w" sizes="(max-width:860px) 92vw, 55vw"><img class="img-sandwich" src="assets/sandwich-chips.jpg" width="1368" height="1155" loading="lazy" decoding="async" alt="Crispy fried chicken sandwich cut in half with melted cheese, served with a bag of plain potato chips, from The Chicken Shack in Waupaca, WI"></picture>
         <figcaption>Crispy chicken sandwich, chips on the side.</figcaption>
       </figure>
       <figure>
-        <img src="assets/interior.jpg" alt="Inside the Chicken Shack dining room with wood booths and stained-glass lamps">
+        <picture><source type="image/webp" srcset="assets/interior-600.webp 600w, assets/interior.webp 1000w" sizes="(max-width:860px) 92vw, 42vw"><source type="image/jpeg" srcset="assets/interior-600.jpg 600w, assets/interior.jpg 1200w" sizes="(max-width:860px) 92vw, 42vw"><img src="assets/interior.jpg" width="1200" height="1600" loading="lazy" decoding="async" alt="Inside the Chicken Shack dining room in Waupaca, WI with wood booths and stained-glass lamps"></picture>
         <figcaption>Cozy booths &amp; warm wood inside.</figcaption>
       </figure>
     </div>
     <div style="text-align:center;margin-top:30px">
-      <a class="btn btn-gold" href="https://www.google.com/maps/search/?api=1&query=N2717+County+Rd+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Get Directions</a>
+      <a class="btn btn-gold" href="https://www.google.com/maps/search/?api=1&query=N+2717+County+Rd+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Get Directions</a>
     </div>
   </div>
 </section>
@@ -610,10 +634,10 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
     <span class="eyebrow">Say hello</span>
     <h2>Come see us in King</h2>
     <div class="contact-grid" style="margin-top:28px">
-      <div class="photo-frame"><img src="assets/food-basket-red.jpg" alt="Red basket of fried chicken with seasoned potato wedges and cheese sauce from The Chicken Shack in Waupaca, WI" style="height:100%;object-fit:cover"></div>
+      <div class="photo-frame"><picture><source type="image/webp" srcset="assets/food-basket-red-700.webp 700w, assets/food-basket-red.webp 1094w" sizes="(max-width:860px) 92vw, 46vw"><source type="image/jpeg" srcset="assets/food-basket-red-700.jpg 700w, assets/food-basket-red.jpg 1094w" sizes="(max-width:860px) 92vw, 46vw"><img src="assets/food-basket-red.jpg" width="1094" height="733" loading="lazy" decoding="async" alt="Red basket of fried chicken with seasoned potato wedges and cheese sauce from The Chicken Shack in Waupaca, WI" style="height:100%;object-fit:cover"></picture></div>
       <div class="contact-card">
         <h3>📍 Address</h3>
-        <p>N2717 County Rd QQ<br>Waupaca, WI 54981</p>
+        <p>N 2717 County Rd QQ<br>Waupaca, WI 54981</p>
         <h3>📞 Phone</h3>
         <p><a href="tel:+17159422533">715-942-2533</a></p>
         <h3>✉️ Email</h3>
@@ -622,7 +646,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
         <p>Feeding a crowd? Send catering inquiries to <a href="mailto:thechickenshack2026@gmail.com?subject=Catering%20Inquiry">thechickenshack2026@gmail.com</a></p>
         <h3>👍 Facebook</h3>
         <p><a href="https://www.facebook.com/profile.php?id=61560247795328" target="_blank" rel="noopener">Chicken Shack Waupaca</a></p>
-        <a class="btn btn-gold map-btn" href="https://www.google.com/maps/search/?api=1&query=N2717+County+Rd+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Open in Google Maps</a>
+        <a class="btn btn-gold map-btn" href="https://www.google.com/maps/search/?api=1&query=N+2717+County+Rd+QQ+Waupaca+WI+54981" target="_blank" rel="noopener">Open in Google Maps</a>
       </div>
     </div>
 
@@ -670,12 +694,14 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   </div>
 </section>
 
+</main>
+
 <div class="stripes-bar" aria-hidden="true"></div>
 
 <footer>
-  <img class="flogo" src="assets/logo-clean.png?v=2" alt="The Chicken Shack logo">
+  <picture><source srcset="assets/logo-256.webp" type="image/webp"><img class="flogo" src="assets/logo-256.png" width="256" height="256" loading="lazy" decoding="async" alt="The Chicken Shack logo"></picture>
   <p class="slab">The Chicken Shack — Waupaca, WI</p>
-  <p>N2717 County Rd QQ, Waupaca, WI 54981 · <a href="tel:+17159422533">715-942-2533</a></p>
+  <p>N 2717 County Rd QQ, Waupaca, WI 54981 · <a href="tel:+17159422533">715-942-2533</a></p>
   <div class="socials">
     <a href="https://www.facebook.com/profile.php?id=61560247795328" target="_blank" rel="noopener">👍 Facebook</a>
     <a href="tel:+17159422533">📞 Call</a>

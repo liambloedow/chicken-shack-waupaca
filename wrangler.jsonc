@@ -5,6 +5,13 @@
   // are excluded from upload via .assetsignore.
   "name": "chicken-shack",
   "account_id": "8ce046368db64b617961de23fe3fbb47",
+  // Keep the custom domain attached on every deploy. Without this block a
+  // deploy detaches chickenshackwi.com and takes the site down.
+  "routes": [
+    { "pattern": "chickenshackwi.com", "custom_domain": true }
+  ],
+  // Keeps chicken-shack.lenckiowen.workers.dev alive as a fallback URL.
+  "workers_dev": true,
   "compatibility_date": "2026-08-03",
   "assets": {
     "directory": "./"
