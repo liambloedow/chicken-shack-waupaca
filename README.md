@@ -9,14 +9,12 @@ with Claude in chat, now handed off for further design/dev work in Claude Code.
 - Address: N2723 County Hwy QQ, Waupaca, WI 54981
 - Phone: (715) 942-2434
 - Email: chicken.shack.waupaca@gmail.com
-- Facebook: https://www.facebook.com/profile.php?id=61560247795328
 - Menu: deep fried chicken, chicken wings, grilled chicken, fries/sides. No priced
   menu yet — the "Menu" section is intentionally a "full menu coming soon" placeholder.
 - Hours: only known info is "open 7 days a week" — real hours haven't been confirmed,
   so the site says "call for today's hours." Update this if you get real hours.
 - Currently hiring: line cooks, servers, delivery drivers, FT/PT. Walk-in interviews
-  Mon–Fri 11am–4pm. This is real info pulled from their Facebook page — keep accurate
-  or ask before changing.
+  Mon–Fri 11am–4pm. Keep accurate or ask before changing.
 
 ## File structure
 ```
