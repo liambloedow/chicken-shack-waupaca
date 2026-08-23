@@ -106,6 +106,17 @@ a{color:inherit}
 .halftone{background-image:radial-gradient(rgba(0,0,0,.14) 1.4px, transparent 1.5px);background-size:14px 14px}
 .stripes-bar{height:16px;background:repeating-linear-gradient(45deg,var(--red) 0 20px,var(--gold) 20px 40px)}
 
+/* ---------- TEMPORARY CLOSURE BANNER ---------- */
+#closure-banner{background:var(--gold);color:var(--ink);border-bottom:3px solid var(--ink);font-family:'Nunito',sans-serif;font-weight:800}
+#closure-banner[hidden]{display:none}
+#closure-banner .in{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+#closure-banner .closure-text{flex:1 1 auto;min-width:0;font-size:.95rem;line-height:1.45}
+#closure-banner .closure-dismiss{flex:0 0 auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:2px solid var(--ink);border-radius:10px;color:var(--ink);font-family:'Bungee',sans-serif;font-size:.9rem;line-height:1;cursor:pointer;transition:background .15s, color .15s}
+#closure-banner .closure-dismiss:hover{background:var(--ink);color:var(--gold)}
+/* same notice, inline in the hours card */
+.closure-note{margin-top:10px;background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:10px;padding:8px 10px;font-weight:800;font-size:.85rem;line-height:1.4;text-align:left}
+.closure-note[hidden]{display:none}
+
 /* ---------- TOP HUSTLE BAR ---------- */
 .tophustle{background:var(--red-dark);color:var(--trim);font-weight:800;font-size:.82rem;letter-spacing:.5px}
 .tophustle .in{max-width:1160px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:7px 20px;flex-wrap:wrap}
@@ -379,6 +390,14 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 </head>
 <body>
 
+<div id="closure-banner" role="status" aria-live="polite" hidden>
+  <div class="in">
+    <p class="closure-text">Temporarily Closed — Due to a power surge, we're closed through Tuesday. We'll reopen Wednesday, August 26. Thank you for your patience!</p>
+    <button type="button" class="closure-dismiss" aria-label="Dismiss closure notice">&#10005;</button>
+  </div>
+</div>
+<script src="assets/closure-banner.js"></script>
+
 <div class="tophustle">
   <div class="in">
     <span>🐔 Homestyle chicken — cooked to order in King, WI</span>
@@ -444,14 +463,15 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
       <div class="ico">🕐</div>
       <h2>Hours</h2>
       <ul class="hours-list">
-        <li><span class="day">Sunday</span><span class="time">11:00 AM – 7:00 PM</span></li>
+        <li><span class="day">Sunday</span><span class="time closure-normal">11:00 AM – 7:00 PM</span><span class="time closed closure-swap" hidden>Closed</span></li>
         <li><span class="day">Monday</span><span class="time closed">Closed</span></li>
         <li><span class="day">Tuesday</span><span class="time closed">Closed</span></li>
         <li><span class="day">Wednesday</span><span class="time">4:00 PM – 7:00 PM</span></li>
         <li><span class="day">Thursday</span><span class="time">4:00 PM – 7:00 PM</span></li>
         <li><span class="day">Friday</span><span class="time">11:00 AM – 7:00 PM</span></li>
-        <li><span class="day">Saturday</span><span class="time">11:00 AM – 7:00 PM</span></li>
+        <li><span class="day">Saturday</span><span class="time closure-normal">11:00 AM – 7:00 PM</span><span class="time closed closure-swap" hidden>Closed</span></li>
       </ul>
+      <p id="closure-hours-note" class="closure-note" hidden>Closed through Tuesday after a power surge. Reopening Wednesday, August 26.</p>
     </div>
     <div class="info-card">
       <div class="ico">📞</div>
