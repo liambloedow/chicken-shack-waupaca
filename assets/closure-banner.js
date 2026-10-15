@@ -24,9 +24,9 @@ var CLOSURE = {
    contact section, as a tap-to-call link. `modifier` styles it as a promo
    rather than an alert. */
 var PROMO = {
-  start: "2026-10-16T00:00:00",
-  end:   "2026-10-16T19:00:00", // 7:00 PM — close of business (Friday)
-  message: "Let us do the cooking while you watch the Brewers — 50¢ wings and $10.99 eight-piece dinner buckets Friday. Call-ins welcome!",
+  start: "2026-10-15T00:00:00",
+  end:   "2026-10-15T19:00:00", // 7:00 PM — close of business
+  message: "Let us do the cooking while you watch the Brewers — 50¢ wings and $10.99 eight-piece dinner buckets today. Call-ins welcome!",
   showPhone: true,
   modifier: "closure-banner--promo"
 };
