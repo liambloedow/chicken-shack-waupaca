@@ -113,6 +113,12 @@ a{color:inherit}
 #closure-banner .closure-text{flex:1 1 auto;min-width:0;font-size:.95rem;line-height:1.45}
 #closure-banner .closure-dismiss{flex:0 0 auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:2px solid var(--ink);border-radius:10px;color:var(--ink);font-family:'Bungee',sans-serif;font-size:.9rem;line-height:1;cursor:pointer;transition:background .15s, color .15s}
 #closure-banner .closure-dismiss:hover{background:var(--ink);color:var(--gold)}
+#closure-banner .closure-phone{color:var(--white);font-weight:800;white-space:nowrap;text-decoration:underline;text-underline-offset:2px;display:inline-block;padding:7px 4px;margin:-7px -4px}
+#closure-banner .closure-phone[hidden]{display:none}
+/* promo variant: festive red/gold rather than the warning-toned alert */
+#closure-banner.closure-banner--promo{background:var(--red);color:var(--trim);border-bottom-color:var(--gold)}
+#closure-banner.closure-banner--promo .closure-dismiss{border-color:var(--trim);color:var(--trim)}
+#closure-banner.closure-banner--promo .closure-dismiss:hover{background:var(--trim);color:var(--red-dark)}
 /* same notice, inline in the hours card */
 .closure-note{margin-top:10px;background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:10px;padding:8px 10px;font-weight:800;font-size:.85rem;line-height:1.4;text-align:left}
 .closure-note[hidden]{display:none}
@@ -392,7 +398,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 
 <div id="closure-banner" role="status" aria-live="polite" hidden>
   <div class="in">
-    <p class="closure-text">Temporarily Closed — Due to a power surge, we're closed through Tuesday. We'll reopen Wednesday, August 26. Thank you for your patience!</p>
+    <p class="closure-text"><span class="closure-message">Let us do the cooking while you watch the Brewers — 50¢ wings and $10.99 eight-piece dinner buckets today. Call-ins welcome!</span> <a class="closure-phone" href="tel:+17159422533">715-942-2533</a></p>
     <button type="button" class="closure-dismiss" aria-label="Dismiss closure notice">&#10005;</button>
   </div>
 </div>

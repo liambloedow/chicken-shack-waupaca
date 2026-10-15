@@ -1,23 +1,40 @@
 /* ---------------------------------------------------------------------------
-   Temporary closure banner.
+   Site notice bar — self-expiring banners.
 
-   EDIT HERE if the reopen date slips. Times are Central (America/Chicago)
-   wall-clock, written exactly as they read on a Wisconsin clock. No timezone
-   suffix: the comparison is done against Central time regardless of where the
-   visitor is browsing from.
+   EDIT THE CONFIGS BELOW. Times are Central (America/Chicago) wall-clock,
+   written exactly as they read on a Wisconsin clock. No timezone suffix: the
+   comparison is made against Central time regardless of where the visitor is
+   browsing from.
 
-   Set `start` and `end` to the same value (or clear them) to switch the
-   banner off entirely.
+   Set a notice's `start` and `end` to the same value (or clear them) to switch
+   that notice off entirely.
+
+   Precedence: the first active notice in NOTICES wins, so a closure always
+   outranks a promo. Only one bar ever renders.
 --------------------------------------------------------------------------- */
+
+/* Temporary closure. Dormant unless the dates are updated. */
 var CLOSURE = {
   start: "2026-08-22T00:00:00",
   end:   "2026-08-26T16:00:00", // banner disappears at reopen time (Wed 4:00 PM)
   message: "Temporarily Closed — Due to a power surge, we're closed through Tuesday. We'll reopen Wednesday, August 26. Thank you for your patience!"
 };
 
+/* Same-day special. `showPhone` appends the shop's number, read from the
+   contact section, as a tap-to-call link. `modifier` styles it as a promo
+   rather than an alert. */
+var PROMO = {
+  start: "2026-10-15T00:00:00",
+  end:   "2026-10-15T19:00:00", // 7:00 PM — close of business
+  message: "Let us do the cooking while you watch the Brewers — 50¢ wings and $10.99 eight-piece dinner buckets today. Call-ins welcome!",
+  showPhone: true,
+  modifier: "closure-banner--promo"
+};
+
 (function (w, d) {
   'use strict';
 
+  var NOTICES = [CLOSURE, PROMO]; // order = precedence; closure outranks promo
   var RECHECK_MS = 60000;
 
   /* Current Central wall-clock as a sortable YYYYMMDDHHMMSS key.
@@ -39,47 +56,90 @@ var CLOSURE = {
     return get('year') + get('month') + get('day') + hour + get('minute') + get('second');
   }
 
-  /* "2026-08-22T00:00:00" -> "20260822000000" (same sortable shape) */
+  /* "2026-10-15T00:00:00" -> "20261015000000" (same sortable shape) */
   function configKey(iso) {
     return String(iso || '').replace(/[-:T]/g, '').slice(0, 14);
   }
 
-  function isClosureActive() {
-    var start = configKey(CLOSURE.start);
-    var end = configKey(CLOSURE.end);
+  /* Generic window test. Every notice gates on this one implementation. */
+  function isNoticeActive(notice) {
+    if (!notice) return false;
+    var start = configKey(notice.start);
+    var end = configKey(notice.end);
     if (!start || !end || start >= end) return false;
     var now = centralNowKey();
     return now >= start && now < end;
   }
 
+  /* Thin wrapper. The hours-row gating still depends on this specifically:
+     a promo must never mark Saturday and Sunday closed. */
+  function isClosureActive() {
+    return isNoticeActive(CLOSURE);
+  }
+
+  function activeNotice() {
+    for (var i = 0; i < NOTICES.length; i++) {
+      if (isNoticeActive(NOTICES[i])) return NOTICES[i];
+    }
+    return null;
+  }
+
   var dismissed = false;
+  var timer = null;
+
+  /* Copy the number straight out of the contact section so the banner can
+     never drift from the real one. Returns false if the markup has none. */
+  function syncPhoneFromContact(banner) {
+    var link = banner.querySelector('.closure-phone');
+    if (!link) return false;
+    var source = d.querySelector('.contact-card a[href^="tel:"]') || d.querySelector('a[href^="tel:"]');
+    if (!source) return false;
+    link.setAttribute('href', source.getAttribute('href'));
+    link.textContent = source.textContent.trim();
+    return true;
+  }
+
+  function render(banner, notice) {
+    var msg = banner.querySelector('.closure-message');
+    var phone = banner.querySelector('.closure-phone');
+
+    if (msg) msg.textContent = notice ? notice.message : '';
+    if (phone) phone.hidden = !(notice && notice.showPhone);
+
+    // Apply only the active notice's modifier; clear any other.
+    for (var i = 0; i < NOTICES.length; i++) {
+      var m = NOTICES[i].modifier;
+      if (m) banner.classList.toggle(m, !!notice && notice.modifier === m);
+    }
+  }
 
   function apply() {
-    var active = isClosureActive();
+    var notice = activeNotice();
+    var closure = isClosureActive();
     var banner = d.getElementById('closure-banner');
     var note = d.getElementById('closure-hours-note');
 
-    if (banner) banner.hidden = !active || dismissed;
-    if (note) note.hidden = !active; // the inline hours note is not dismissible
+    if (banner) {
+      render(banner, notice);
+      banner.hidden = !notice || dismissed;
+    }
 
-    /* Saturday and Sunday fall inside the closure, so swap their published
-       hours for the same muted "Closed" pill Monday and Tuesday already use.
-       Both variants sit in the markup, so this reverts on its own when the
-       window expires. */
+    /* The hours note and the Saturday/Sunday row swap belong to the closure
+       only — a promo leaves published hours untouched. Both variants sit in
+       the markup, so this reverts on its own when the window expires. */
+    if (note) note.hidden = !closure; // the inline hours note is not dismissible
+
     var i, normal = d.querySelectorAll('.closure-normal'), swap = d.querySelectorAll('.closure-swap');
-    for (i = 0; i < normal.length; i++) normal[i].hidden = active;
-    for (i = 0; i < swap.length; i++) swap[i].hidden = !active;
+    for (i = 0; i < normal.length; i++) normal[i].hidden = closure;
+    for (i = 0; i < swap.length; i++) swap[i].hidden = !closure;
 
-    if (!active && timer) { w.clearInterval(timer); timer = null; }
+    if (!notice && !closure && timer) { w.clearInterval(timer); timer = null; }
   }
-
-  var timer = null;
 
   function init() {
     var banner = d.getElementById('closure-banner');
     if (banner) {
-      var text = banner.querySelector('.closure-text');
-      if (text) text.textContent = CLOSURE.message;
+      syncPhoneFromContact(banner); // contact section has parsed by now
       var close = banner.querySelector('.closure-dismiss');
       if (close) close.addEventListener('click', function () {
         dismissed = true;
@@ -87,25 +147,35 @@ var CLOSURE = {
       });
     }
     apply();
-    // Re-check so a tab left open overnight does not keep a stale banner.
-    if (isClosureActive()) timer = w.setInterval(apply, RECHECK_MS);
+    // Re-check so a tab left open past the end time does not keep a stale bar.
+    if (activeNotice() || isClosureActive()) timer = w.setInterval(apply, RECHECK_MS);
   }
 
-  /* The banner markup sits directly above this script, so unhide it now,
+  /* The banner markup sits directly above this script, so render it now,
      before the rest of the page parses. Waiting for DOMContentLoaded would
-     insert the bar after first paint and shift the whole page down. */
+     insert the bar after first paint and shift the whole page down. The
+     phone link's href already ships in the markup; init() re-syncs it from
+     the contact section once that has parsed. */
   (function earlyPass() {
     var banner = d.getElementById('closure-banner');
     if (!banner) return;
-    var text = banner.querySelector('.closure-text');
-    if (text) text.textContent = CLOSURE.message;
-    banner.hidden = !isClosureActive();
+    var notice = activeNotice();
+    render(banner, notice);
+    banner.hidden = !notice;
   })();
 
-  /* The inline hours note lives further down the document, so the rest waits. */
+  /* The hours note and contact section live further down, so the rest waits. */
   if (d.readyState === 'loading') d.addEventListener('DOMContentLoaded', init);
   else init();
 
-  // Shared so the inline hours note uses the same date logic, never a copy.
-  w.ClosureBanner = { CLOSURE: CLOSURE, isClosureActive: isClosureActive };
+  /* Shared so the hours gating and any other consumer use the same date
+     logic, never a copy. */
+  w.ClosureBanner = {
+    CLOSURE: CLOSURE,
+    PROMO: PROMO,
+    NOTICES: NOTICES,
+    isNoticeActive: isNoticeActive,
+    isClosureActive: isClosureActive,
+    activeNotice: activeNotice
+  };
 })(window, document);
