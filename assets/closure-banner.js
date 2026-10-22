@@ -24,9 +24,9 @@ var CLOSURE = {
    contact section, as a tap-to-call link. `modifier` styles it as a promo
    rather than an alert. */
 var PROMO = {
-  start: "2026-10-15T00:00:00",
-  end:   "2026-10-15T19:00:00", // 7:00 PM — close of business
-  message: "Let us do the cooking while you watch the Brewers — 50¢ wings and $10.99 eight-piece dinner buckets today. Call-ins welcome!",
+  start: "2026-10-22T00:00:00",
+  end:   "2026-10-25T19:00:00", // Sunday close
+  message: "Game Day Chicken Specials — 18 wings $10, or a 9-piece chicken strip box with fries $10. Call in your order for pickup!",
   showPhone: true,
   modifier: "closure-banner--promo"
 };
@@ -89,13 +89,15 @@ var PROMO = {
 
   /* Copy the number straight out of the contact section so the banner can
      never drift from the real one. Returns false if the markup has none. */
-  function syncPhoneFromContact(banner) {
-    var link = banner.querySelector('.closure-phone');
-    if (!link) return false;
+  function syncPhoneFromContact() {
+    var targets = d.querySelectorAll('.tel-from-contact');
+    if (!targets.length) return false;
     var source = d.querySelector('.contact-card a[href^="tel:"]') || d.querySelector('a[href^="tel:"]');
-    if (!source) return false;
-    link.setAttribute('href', source.getAttribute('href'));
-    link.textContent = source.textContent.trim();
+    if (!source) return false; // no number in the markup; leave the fallback alone
+    for (var i = 0; i < targets.length; i++) {
+      targets[i].setAttribute('href', source.getAttribute('href'));
+      targets[i].textContent = source.textContent.trim();
+    }
     return true;
   }
 
@@ -129,6 +131,13 @@ var PROMO = {
        the markup, so this reverts on its own when the window expires. */
     if (note) note.hidden = !closure; // the inline hours note is not dismissible
 
+    /* The promo block carries the promo's own content, so it shows only when
+       the promo is the winning notice. If a closure were ever active at the
+       same time, closure wins and the specials stay hidden — advertising
+       game-day pickup while shut would be worse than showing nothing. */
+    var block = d.getElementById('promo-block');
+    if (block) block.hidden = (notice !== PROMO);
+
     var i, normal = d.querySelectorAll('.closure-normal'), swap = d.querySelectorAll('.closure-swap');
     for (i = 0; i < normal.length; i++) normal[i].hidden = closure;
     for (i = 0; i < swap.length; i++) swap[i].hidden = !closure;
@@ -139,7 +148,7 @@ var PROMO = {
   function init() {
     var banner = d.getElementById('closure-banner');
     if (banner) {
-      syncPhoneFromContact(banner); // contact section has parsed by now
+      syncPhoneFromContact(); // contact section has parsed by now
       var close = banner.querySelector('.closure-dismiss');
       if (close) close.addEventListener('click', function () {
         dismissed = true;

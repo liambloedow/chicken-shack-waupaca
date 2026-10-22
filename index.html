@@ -106,6 +106,25 @@ a{color:inherit}
 .halftone{background-image:radial-gradient(rgba(0,0,0,.14) 1.4px, transparent 1.5px);background-size:14px 14px}
 .stripes-bar{height:16px;background:repeating-linear-gradient(45deg,var(--red) 0 20px,var(--gold) 20px 40px)}
 
+/* ---------- GAME DAY PROMO BLOCK ---------- */
+.promo-block{background:var(--butter);padding:62px 20px}
+.promo-block[hidden]{display:none}
+/* single column until a flyer exists; two up once one is present */
+.promo-inner{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+.promo-figure:not(:has(img)){display:none}
+.promo-figure img{width:100%;height:auto;border:5px solid var(--white);border-radius:10px;box-shadow:0 0 0 3px var(--ink),8px 8px 0 rgba(0,0,0,.4)}
+.promo-copy h2{margin-bottom:14px}
+.promo-list{margin-top:18px}
+.promo-cta{margin-top:20px;font-weight:800;font-size:1.05rem}
+.promo-phone{display:inline-block;color:var(--red-dark);font-weight:800;white-space:nowrap;text-decoration:underline;text-underline-offset:2px;padding:7px 4px;margin:-7px -4px}
+.promo-dates{margin-top:10px;font-weight:700;font-size:.92rem}
+@media(min-width:861px){
+  .promo-inner:has(.promo-figure img){grid-template-columns:1fr 1fr;gap:44px}
+}
+@media(max-width:860px){
+  .promo-block{padding:44px 18px}
+}
+
 /* ---------- TEMPORARY CLOSURE BANNER ---------- */
 #closure-banner{background:var(--gold);color:var(--ink);border-bottom:3px solid var(--ink);font-family:'Nunito',sans-serif;font-weight:800}
 #closure-banner[hidden]{display:none}
@@ -398,7 +417,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 
 <div id="closure-banner" role="status" aria-live="polite" hidden>
   <div class="in">
-    <p class="closure-text"><span class="closure-message">Let us do the cooking while you watch the Brewers — 50¢ wings and $10.99 eight-piece dinner buckets today. Call-ins welcome!</span> <a class="closure-phone" href="tel:+17159422533">715-942-2533</a></p>
+    <p class="closure-text"><span class="closure-message">Game Day Chicken Specials — 18 wings $10, or a 9-piece chicken strip box with fries $10. Call in your order for pickup!</span> <a class="closure-phone tel-from-contact" href="tel:+17159422533">715-942-2533</a></p>
     <button type="button" class="closure-dismiss" aria-label="Dismiss closure notice">&#10005;</button>
   </div>
 </div>
@@ -486,6 +505,25 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
     </div>
   </div>
 </div>
+
+<section id="promo-block" class="promo-block" aria-labelledby="promo-block-title" hidden>
+  <div class="wrap promo-inner">
+    <div class="promo-figure">
+      <!-- FLYER GOES HERE. Replace this placeholder with the <img>/<picture> once the
+           file lands in assets/. Keep explicit width/height so CLS stays at zero. -->
+    </div>
+    <div class="promo-copy">
+      <span class="eyebrow">Game day</span>
+      <h2 id="promo-block-title">Game Day Chicken Specials</h2>
+      <ul class="food-list promo-list">
+        <li><span class="dot"></span><strong>18 wings</strong> — $10</li>
+        <li><span class="dot"></span><strong>9-piece chicken strip box</strong> with fries — $10</li>
+      </ul>
+      <p class="promo-cta">Call in your order for pickup: <a class="promo-phone tel-from-contact" href="tel:+17159422533">715-942-2533</a></p>
+      <p class="promo-dates">Running through Sunday, October 25 at 7:00 PM.</p>
+    </div>
+  </div>
+</section>
 
 <section class="food" id="food">
   <div class="wrap split reveal">
