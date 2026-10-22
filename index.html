@@ -109,18 +109,12 @@ a{color:inherit}
 /* ---------- GAME DAY PROMO BLOCK ---------- */
 .promo-block{background:var(--butter);padding:62px 20px}
 .promo-block[hidden]{display:none}
-/* single column until a flyer exists; two up once one is present */
-.promo-inner{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
-.promo-figure:not(:has(img)){display:none}
-.promo-figure img{width:100%;height:auto;border:5px solid var(--white);border-radius:10px;box-shadow:0 0 0 3px var(--ink),8px 8px 0 rgba(0,0,0,.4)}
+.promo-inner{display:grid;gap:28px}
 .promo-copy h2{margin-bottom:14px}
 .promo-list{margin-top:18px}
 .promo-cta{margin-top:20px;font-weight:800;font-size:1.05rem}
 .promo-phone{display:inline-block;color:var(--red-dark);font-weight:800;white-space:nowrap;text-decoration:underline;text-underline-offset:2px;padding:7px 4px;margin:-7px -4px}
 .promo-dates{margin-top:10px;font-weight:700;font-size:.92rem}
-@media(min-width:861px){
-  .promo-inner:has(.promo-figure img){grid-template-columns:1fr 1fr;gap:44px}
-}
 @media(max-width:860px){
   .promo-block{padding:44px 18px}
 }
@@ -508,10 +502,6 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 
 <section id="promo-block" class="promo-block" aria-labelledby="promo-block-title" hidden>
   <div class="wrap promo-inner">
-    <div class="promo-figure">
-      <!-- FLYER GOES HERE. Replace this placeholder with the <img>/<picture> once the
-           file lands in assets/. Keep explicit width/height so CLS stays at zero. -->
-    </div>
     <div class="promo-copy">
       <span class="eyebrow">Game day</span>
       <h2 id="promo-block-title">Game Day Chicken Specials</h2>
