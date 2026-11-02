@@ -126,6 +126,7 @@ a{color:inherit}
 #closure-banner .closure-text{flex:1 1 auto;min-width:0;font-size:.95rem;line-height:1.45}
 #closure-banner .closure-dismiss{flex:0 0 auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:2px solid var(--ink);border-radius:10px;color:var(--ink);font-family:'Bungee',sans-serif;font-size:.9rem;line-height:1;cursor:pointer;transition:background .15s, color .15s}
 #closure-banner .closure-dismiss:hover{background:var(--ink);color:var(--gold)}
+#closure-banner .closure-dismiss[hidden]{display:none}
 #closure-banner .closure-phone{color:var(--white);font-weight:800;white-space:nowrap;text-decoration:underline;text-underline-offset:2px;display:inline-block;padding:7px 4px;margin:-7px -4px}
 #closure-banner .closure-phone[hidden]{display:none}
 /* promo variant: festive red/gold rather than the warning-toned alert */
@@ -235,8 +236,8 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .info-card h2{font-size:1rem;color:var(--red);margin-bottom:6px;letter-spacing:.5px;font-family:'Bungee',sans-serif}
 .info-card p{font-weight:700;font-size:.98rem}
 .info-card a{color:var(--red-dark);font-weight:800}
-/* permanent note in the hours card; inherits .info-card p styling */
-.hours-yearround{margin-top:12px}
+/* permanent note in the hours card, badged for weight (existing tokens only) */
+.info-card .hours-yearround{display:inline-block;margin-top:16px;background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:999px;padding:8px 18px;font-family:'Bungee',sans-serif;font-weight:400;font-size:.85rem;letter-spacing:.5px;line-height:1.3;box-shadow:3px 3px 0 var(--ink)}
 /* day-by-day hours (same card, existing palette) */
 .hours-list{list-style:none;margin-top:10px;display:grid;gap:7px;text-align:left}
 .hours-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:5px;border-bottom:2px dotted rgba(43,27,18,.22)}

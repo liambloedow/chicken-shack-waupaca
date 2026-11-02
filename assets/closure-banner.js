@@ -36,7 +36,8 @@ var PROMO = {
 var WINTER = {
   start: "2026-11-01T00:00:00",
   end:   "2027-03-01T00:00:00",
-  message: "Open all winter — we're not closing for the season!"
+  message: "Open all winter — we're not closing for the season!",
+  dismissible: false // standing announcement, not a time-boxed promo
 };
 
 (function (w, d) {
@@ -85,6 +86,11 @@ var WINTER = {
     return isNoticeActive(CLOSURE);
   }
 
+  /* Notices are closable by default; a notice opts out with dismissible:false. */
+  function isDismissible(notice) {
+    return !!notice && notice.dismissible !== false;
+  }
+
   function activeNotice() {
     for (var i = 0; i < NOTICES.length; i++) {
       if (isNoticeActive(NOTICES[i])) return NOTICES[i];
@@ -116,6 +122,9 @@ var WINTER = {
     if (msg) msg.textContent = notice ? notice.message : '';
     if (phone) phone.hidden = !(notice && notice.showPhone);
 
+    var close = banner.querySelector('.closure-dismiss');
+    if (close) close.hidden = !isDismissible(notice);
+
     // Apply only the active notice's modifier; clear any other.
     for (var i = 0; i < NOTICES.length; i++) {
       var m = NOTICES[i].modifier;
@@ -131,7 +140,7 @@ var WINTER = {
 
     if (banner) {
       render(banner, notice);
-      banner.hidden = !notice || dismissed;
+      banner.hidden = !notice || (dismissed && isDismissible(notice));
     }
 
     /* The hours note and the Saturday/Sunday row swap belong to the closure
@@ -159,6 +168,7 @@ var WINTER = {
       syncPhoneFromContact(); // contact section has parsed by now
       var close = banner.querySelector('.closure-dismiss');
       if (close) close.addEventListener('click', function () {
+        if (!isDismissible(activeNotice())) return;
         dismissed = true;
         banner.hidden = true;
       });
@@ -178,7 +188,7 @@ var WINTER = {
     if (!banner) return;
     var notice = activeNotice();
     render(banner, notice);
-    banner.hidden = !notice;
+    banner.hidden = !notice || (dismissed && isDismissible(notice));
   })();
 
   /* The hours note and contact section live further down, so the rest waits. */
