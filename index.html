@@ -235,6 +235,8 @@ h2{font-size:clamp(2rem,4.8vw,3rem);color:var(--red);margin-bottom:14px}
 .info-card h2{font-size:1rem;color:var(--red);margin-bottom:6px;letter-spacing:.5px;font-family:'Bungee',sans-serif}
 .info-card p{font-weight:700;font-size:.98rem}
 .info-card a{color:var(--red-dark);font-weight:800}
+/* permanent note in the hours card; inherits .info-card p styling */
+.hours-yearround{margin-top:12px}
 /* day-by-day hours (same card, existing palette) */
 .hours-list{list-style:none;margin-top:10px;display:grid;gap:7px;text-align:left}
 .hours-list li{display:flex;justify-content:space-between;align-items:center;gap:10px;padding-bottom:5px;border-bottom:2px dotted rgba(43,27,18,.22)}
@@ -491,6 +493,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
         <li><span class="day">Saturday</span><span class="time closure-normal">11:00 AM – 7:00 PM</span><span class="time closed closure-swap" hidden>Closed</span></li>
       </ul>
       <p id="closure-hours-note" class="closure-note" hidden>Closed through Tuesday after a power surge. Reopening Wednesday, August 26.</p>
+      <p class="hours-yearround">Open year-round.</p>
     </div>
     <div class="info-card">
       <div class="ico">📞</div>

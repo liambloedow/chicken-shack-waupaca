@@ -31,10 +31,18 @@ var PROMO = {
   modifier: "closure-banner--promo"
 };
 
+/* Seasonal announcement. Long-running, so it sits last in precedence: a
+   closure or a dated special should both outrank it. */
+var WINTER = {
+  start: "2026-11-01T00:00:00",
+  end:   "2027-03-01T00:00:00",
+  message: "Open all winter — we're not closing for the season!"
+};
+
 (function (w, d) {
   'use strict';
 
-  var NOTICES = [CLOSURE, PROMO]; // order = precedence; closure outranks promo
+  var NOTICES = [CLOSURE, PROMO, WINTER]; // order = precedence; closure outranks the rest
   var RECHECK_MS = 60000;
 
   /* Current Central wall-clock as a sortable YYYYMMDDHHMMSS key.
@@ -182,6 +190,7 @@ var PROMO = {
   w.ClosureBanner = {
     CLOSURE: CLOSURE,
     PROMO: PROMO,
+    WINTER: WINTER,
     NOTICES: NOTICES,
     isNoticeActive: isNoticeActive,
     isClosureActive: isClosureActive,
