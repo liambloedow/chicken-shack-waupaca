@@ -12,6 +12,10 @@
   ],
   // Keeps chicken-shack.lenckiowen.workers.dev alive as a fallback URL.
   "workers_dev": true,
+  // Regenerates the menu in index.html from menu.mjs before every deploy, so a
+  // price edit can never ship stale. The script exits non-zero on a malformed
+  // price, which aborts the deploy.
+  "build": { "command": "node menu.mjs" },
   "compatibility_date": "2026-08-03",
   "assets": {
     "directory": "./"

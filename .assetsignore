@@ -4,6 +4,7 @@
 **/node_modules
 **/.DS_Store
 wrangler.jsonc
+menu.mjs
 .assetsignore
 .gitignore
 .nojekyll
