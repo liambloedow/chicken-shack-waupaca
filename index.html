@@ -120,26 +120,26 @@ a{color:inherit}
 }
 
 /* ---------- TEMPORARY CLOSURE BANNER ---------- */
-#closure-banner{background:var(--gold);color:var(--ink);border-bottom:3px solid var(--ink);font-family:'Nunito',sans-serif;font-weight:800}
+#closure-banner .notice-bar{background:var(--gold);color:var(--ink);border-bottom:3px solid var(--ink);font-family:'Nunito',sans-serif;font-weight:800}
 #closure-banner[hidden]{display:none}
 #closure-banner .in{max-width:1160px;margin:0 auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
-#closure-banner .closure-text{flex:1 1 auto;min-width:0;font-size:.95rem;line-height:1.45}
+#closure-banner .closure-text{flex:1 1 auto;min-width:0;font-size:.95rem;line-height:1.45;text-wrap:balance}
 #closure-banner .closure-dismiss{flex:0 0 auto;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:transparent;border:2px solid var(--ink);border-radius:10px;color:var(--ink);font-family:'Bungee',sans-serif;font-size:.9rem;line-height:1;cursor:pointer;transition:background .15s, color .15s}
 #closure-banner .closure-dismiss:hover{background:var(--ink);color:var(--gold)}
 #closure-banner .closure-dismiss[hidden]{display:none}
 #closure-banner .closure-phone{color:var(--white);font-weight:800;white-space:nowrap;text-decoration:underline;text-underline-offset:2px;display:inline-block;padding:7px 4px;margin:-7px -4px}
 #closure-banner .closure-phone[hidden]{display:none}
 /* promo variant: festive red/gold rather than the warning-toned alert */
-#closure-banner.closure-banner--promo{background:var(--red);color:var(--trim);border-bottom-color:var(--gold)}
-#closure-banner.closure-banner--promo .closure-dismiss{border-color:var(--trim);color:var(--trim)}
-#closure-banner.closure-banner--promo .closure-dismiss:hover{background:var(--trim);color:var(--red-dark)}
+#closure-banner .closure-banner--promo{background:var(--red);color:var(--trim);border-bottom-color:var(--gold)}
+#closure-banner .closure-banner--promo .closure-dismiss{border-color:var(--trim);color:var(--trim)}
+#closure-banner .closure-banner--promo .closure-dismiss:hover{background:var(--trim);color:var(--red-dark)}
 /* announce variant: heavier and slightly larger, with one short entrance.
    Deliberately no flashing or looping: flashing content is a seizure risk
    (WCAG 2.3.1). Opacity and transform only, so the entrance cannot shift
    layout; it plays once because the class is never removed and re-added. */
 @keyframes noticeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
-#closure-banner.closure-banner--announce .closure-text{font-weight:900;font-size:1.05rem}
-#closure-banner.closure-banner--announce .in{animation:noticeIn .32s ease-out 1 both}
+#closure-banner .closure-banner--announce .closure-text{font-weight:900;font-size:1.05rem}
+#closure-banner .closure-banner--announce .in{animation:noticeIn .32s ease-out 1 both}
 /* same notice, inline in the hours card */
 .closure-note{margin-top:10px;background:var(--gold);color:var(--ink);border:2px solid var(--ink);border-radius:10px;padding:8px 10px;font-weight:800;font-size:.85rem;line-height:1.4;text-align:left}
 .closure-note[hidden]{display:none}
@@ -431,7 +431,7 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
   .food-photos{padding:44px 18px}
 }
 @media (prefers-reduced-motion: reduce){
-  #closure-banner.closure-banner--announce .in{animation:none}
+  #closure-banner .closure-banner--announce .in{animation:none}
   .ticker-track,.sunburst,.hero-logo,.now-open,.bulb{animation:none}
   html.js .hero-logo-wrap,html.js .hero h1,html.js .hero p.sub,html.js .hero .btn-row,html.js .hero .now-open{animation:none}
   html.js .reveal{opacity:1;transform:none}
@@ -445,9 +445,11 @@ html.js .reveal.in{opacity:1;transform:translateY(0);transition:opacity .6s ease
 <body>
 
 <div id="closure-banner" role="status" aria-live="polite" hidden>
-  <div class="in">
-    <p class="closure-text"><span class="closure-message">Game Day Chicken Specials — 18 wings $10, or a 9-piece chicken strip box with fries $10. Call in your order for pickup!</span> <a class="closure-phone tel-from-contact" href="tel:+17159422533">715-942-2533</a></p>
-    <button type="button" class="closure-dismiss" aria-label="Dismiss closure notice">&#10005;</button>
+  <div class="notice-bar">
+    <div class="in">
+      <p class="closure-text"><span class="closure-message">Game Day Chicken Specials — 18 wings $10, or a 9-piece chicken strip box with fries $10. Call in your order for pickup!</span> <a class="closure-phone tel-from-contact" href="tel:+17159422533">715-942-2533</a></p>
+      <button type="button" class="closure-dismiss" aria-label="Dismiss notice">&#10005;</button>
+    </div>
   </div>
 </div>
 <script src="assets/closure-banner.js"></script>

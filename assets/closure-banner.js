@@ -9,8 +9,9 @@
    Set a notice's `start` and `end` to the same value (or clear them) to switch
    that notice off entirely.
 
-   Precedence: the first active notice in NOTICES wins, so a closure always
-   outranks a promo. Only one bar ever renders.
+   Stacking: every active notice gets its own bar, stacked in NOTICES order.
+   The one exception is CLOSURE: while it is active it is the only bar shown,
+   because nothing else on the site applies while the shop is shut.
 --------------------------------------------------------------------------- */
 
 /* Temporary closure. Dormant unless the dates are updated. */
@@ -31,9 +32,9 @@ var PROMO = {
   modifier: "closure-banner--promo"
 };
 
-/* Breakfast launch. Outranks WINTER (both run in late November and only one
-   bar renders), and like WINTER it cannot be dismissed. `modifier` takes a
-   space-separated list: the promo colours plus the announce treatment. */
+/* Breakfast launch. Stacks above WINTER (both run from late November), and
+   like WINTER it cannot be dismissed. `modifier` takes a space-separated
+   list: the promo colours plus the announce treatment. */
 var BREAKFAST = {
   start: "2026-11-20T00:00:00",
   end:   "2026-12-20T00:00:00",
@@ -42,8 +43,8 @@ var BREAKFAST = {
   modifier: "closure-banner--promo closure-banner--announce"
 };
 
-/* Seasonal announcement. Long-running, so it sits last in precedence: a
-   closure or a dated special should both outrank it. */
+/* Seasonal announcement. Long-running, so it sits last: dated specials stack
+   above it, and a closure replaces it. */
 var WINTER = {
   start: "2026-11-01T00:00:00",
   end:   "2027-03-01T00:00:00",
@@ -54,7 +55,7 @@ var WINTER = {
 (function (w, d) {
   'use strict';
 
-  var NOTICES = [CLOSURE, PROMO, BREAKFAST, WINTER]; // order = precedence; closure outranks the rest
+  var NOTICES = [CLOSURE, PROMO, BREAKFAST, WINTER]; // order = stacking order, top to bottom
   var RECHECK_MS = 60000;
 
   /* Current Central wall-clock as a sortable YYYYMMDDHHMMSS key.
@@ -102,117 +103,162 @@ var WINTER = {
     return !!notice && notice.dismissible !== false;
   }
 
-  function activeNotice() {
+  /* Every notice in its window, in stacking order. A closure overrides the
+     lot: while it is active it is the only entry. */
+  function activeNotices() {
+    if (isClosureActive()) return [CLOSURE];
+    var list = [];
     for (var i = 0; i < NOTICES.length; i++) {
-      if (isNoticeActive(NOTICES[i])) return NOTICES[i];
+      if (NOTICES[i] !== CLOSURE && isNoticeActive(NOTICES[i])) list.push(NOTICES[i]);
     }
-    return null;
+    return list;
   }
 
-  var dismissed = false;
+  /* Top bar, kept for anything that only cares about the leading notice. */
+  function activeNotice() {
+    return activeNotices()[0] || null;
+  }
+
+  var dismissed = {}; // NOTICES index -> true once its X is pressed
+  var template = null; // detached copy of the bar markup that ships in the HTML
   var timer = null;
 
+  function keyOf(notice) {
+    return String(NOTICES.indexOf(notice));
+  }
+
+  /* Active notices that have not been closed. Non-dismissible ones always stay. */
+  function visibleNotices(list) {
+    var out = [];
+    for (var i = 0; i < list.length; i++) {
+      if (!(isDismissible(list[i]) && dismissed[keyOf(list[i])])) out.push(list[i]);
+    }
+    return out;
+  }
+
   /* Copy the number straight out of the contact section so the banner can
-     never drift from the real one. Returns false if the markup has none. */
+     never drift from the real one. The detached template is synced too, so a
+     bar created later carries the same number. Returns false if the markup
+     has none. */
   function syncPhoneFromContact() {
-    var targets = d.querySelectorAll('.tel-from-contact');
-    if (!targets.length) return false;
     var source = d.querySelector('.contact-card a[href^="tel:"]') || d.querySelector('a[href^="tel:"]');
     if (!source) return false; // no number in the markup; leave the fallback alone
+    var targets = [].slice.call(d.querySelectorAll('.tel-from-contact'));
+    if (template) targets = targets.concat([].slice.call(template.querySelectorAll('.tel-from-contact')));
     for (var i = 0; i < targets.length; i++) {
       targets[i].setAttribute('href', source.getAttribute('href'));
       targets[i].textContent = source.textContent.trim();
     }
-    return true;
+    return targets.length > 0;
   }
 
   function classTokens(modifier) {
     return String(modifier || '').split(/\s+/).filter(Boolean);
   }
 
-  function render(banner, notice) {
-    var msg = banner.querySelector('.closure-message');
-    var phone = banner.querySelector('.closure-phone');
+  /* One bar per notice. Its classes are fixed at creation because a bar only
+     ever shows the notice it was made for. */
+  function createBar(notice) {
+    var bar = template.cloneNode(true);
+    var key = keyOf(notice);
+    bar.setAttribute('data-notice', key);
+    var t = classTokens(notice.modifier);
+    for (var i = 0; i < t.length; i++) bar.classList.add(t[i]);
 
-    if (msg) msg.textContent = notice ? notice.message : '';
-    if (phone) phone.hidden = !(notice && notice.showPhone);
+    var msg = bar.querySelector('.closure-message');
+    if (msg) msg.textContent = notice.message;
+    var phone = bar.querySelector('.closure-phone');
+    if (phone) phone.hidden = !notice.showPhone;
 
-    var close = banner.querySelector('.closure-dismiss');
-    if (close) close.hidden = !isDismissible(notice);
-
-    /* Apply exactly the active notice's classes and clear every other notice's.
-       A modifier may list several classes, and notices may share one, so work
-       from sets: classList.toggle throws on a string containing a space, and a
-       per-notice toggle would switch a shared class off and back on. */
-    var all = {}, on = {}, k;
-    for (var i = 0; i < NOTICES.length; i++) {
-      var t = classTokens(NOTICES[i].modifier);
-      for (k = 0; k < t.length; k++) all[t[k]] = true;
+    var close = bar.querySelector('.closure-dismiss');
+    if (close) {
+      close.hidden = !isDismissible(notice);
+      close.addEventListener('click', function () {
+        if (!isDismissible(notice)) return;
+        dismissed[key] = true;
+        apply();
+      });
     }
-    if (notice) {
-      var a = classTokens(notice.modifier);
-      for (k = 0; k < a.length; k++) on[a[k]] = true;
+    return bar;
+  }
+
+  /* Bring the stack in line with `list` while touching as little as possible.
+     Bars that stay keep their node: re-inserting one would restart its
+     entrance animation on every re-check. Only new bars are inserted, and an
+     existing bar moves only if the order genuinely changed. */
+  function renderStack(stack, list) {
+    var want = {}, i;
+    for (i = 0; i < list.length; i++) want[keyOf(list[i])] = true;
+
+    var child = stack.firstElementChild, next;
+    while (child) {
+      next = child.nextElementSibling;
+      if (!want[child.getAttribute('data-notice')]) stack.removeChild(child);
+      child = next;
     }
-    for (var cls in all) banner.classList.toggle(cls, !!on[cls]);
+
+    var cursor = stack.firstElementChild;
+    for (i = 0; i < list.length; i++) {
+      var key = keyOf(list[i]);
+      var bar = stack.querySelector(':scope > [data-notice="' + key + '"]') || createBar(list[i]);
+      if (bar === cursor) cursor = cursor.nextElementSibling;
+      else stack.insertBefore(bar, cursor);
+    }
+    stack.hidden = list.length === 0;
+  }
+
+  /* The bar markup in the HTML is the template, not a live bar. Lift it out
+     so every bar, including the first, comes from the same clone path. */
+  function takeTemplate(stack) {
+    if (template) return true;
+    var bar = stack.querySelector('.notice-bar');
+    if (!bar) return false;
+    template = stack.removeChild(bar);
+    return true;
   }
 
   function apply() {
-    var notice = activeNotice();
+    var list = activeNotices();
     var closure = isClosureActive();
-    var banner = d.getElementById('closure-banner');
+    var stack = d.getElementById('closure-banner');
     var note = d.getElementById('closure-hours-note');
 
-    if (banner) {
-      render(banner, notice);
-      banner.hidden = !notice || (dismissed && isDismissible(notice));
-    }
+    if (stack && takeTemplate(stack)) renderStack(stack, visibleNotices(list));
 
     /* The hours note and the Saturday/Sunday row swap belong to the closure
        only — a promo leaves published hours untouched. Both variants sit in
        the markup, so this reverts on its own when the window expires. */
     if (note) note.hidden = !closure; // the inline hours note is not dismissible
 
-    /* The promo block carries the promo's own content, so it shows only when
-       the promo is the winning notice. If a closure were ever active at the
-       same time, closure wins and the specials stay hidden — advertising
-       game-day pickup while shut would be worse than showing nothing. */
+    /* The promo block carries the promo's own content, so it shows only while
+       the promo is live. A closure empties the list down to itself, so the
+       specials stay hidden while shut — advertising game-day pickup then
+       would be worse than showing nothing. */
     var block = d.getElementById('promo-block');
-    if (block) block.hidden = (notice !== PROMO);
+    if (block) block.hidden = list.indexOf(PROMO) === -1;
 
     var i, normal = d.querySelectorAll('.closure-normal'), swap = d.querySelectorAll('.closure-swap');
     for (i = 0; i < normal.length; i++) normal[i].hidden = closure;
     for (i = 0; i < swap.length; i++) swap[i].hidden = !closure;
 
-    if (!notice && !closure && timer) { w.clearInterval(timer); timer = null; }
+    if (!list.length && timer) { w.clearInterval(timer); timer = null; }
   }
 
   function init() {
-    var banner = d.getElementById('closure-banner');
-    if (banner) {
-      syncPhoneFromContact(); // contact section has parsed by now
-      var close = banner.querySelector('.closure-dismiss');
-      if (close) close.addEventListener('click', function () {
-        if (!isDismissible(activeNotice())) return;
-        dismissed = true;
-        banner.hidden = true;
-      });
-    }
+    syncPhoneFromContact(); // contact section has parsed by now
     apply();
-    // Re-check so a tab left open past the end time does not keep a stale bar.
-    if (activeNotice() || isClosureActive()) timer = w.setInterval(apply, RECHECK_MS);
+    // Re-check so a tab left open past an end time does not keep a stale bar.
+    if (activeNotices().length && !timer) timer = w.setInterval(apply, RECHECK_MS);
   }
 
   /* The banner markup sits directly above this script, so render it now,
      before the rest of the page parses. Waiting for DOMContentLoaded would
-     insert the bar after first paint and shift the whole page down. The
+     insert the bars after first paint and shift the whole page down. The
      phone link's href already ships in the markup; init() re-syncs it from
      the contact section once that has parsed. */
   (function earlyPass() {
-    var banner = d.getElementById('closure-banner');
-    if (!banner) return;
-    var notice = activeNotice();
-    render(banner, notice);
-    banner.hidden = !notice || (dismissed && isDismissible(notice));
+    var stack = d.getElementById('closure-banner');
+    if (stack && takeTemplate(stack)) renderStack(stack, visibleNotices(activeNotices()));
   })();
 
   /* The hours note and contact section live further down, so the rest waits. */
@@ -229,6 +275,7 @@ var WINTER = {
     NOTICES: NOTICES,
     isNoticeActive: isNoticeActive,
     isClosureActive: isClosureActive,
+    activeNotices: activeNotices,
     activeNotice: activeNotice
   };
 })(window, document);
