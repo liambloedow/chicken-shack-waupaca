@@ -31,6 +31,17 @@ var PROMO = {
   modifier: "closure-banner--promo"
 };
 
+/* Breakfast launch. Outranks WINTER (both run in late November and only one
+   bar renders), and like WINTER it cannot be dismissed. `modifier` takes a
+   space-separated list: the promo colours plus the announce treatment. */
+var BREAKFAST = {
+  start: "2026-11-20T00:00:00",
+  end:   "2026-12-20T00:00:00",
+  message: "Now serving breakfast — open at 6 AM!",
+  dismissible: false,
+  modifier: "closure-banner--promo closure-banner--announce"
+};
+
 /* Seasonal announcement. Long-running, so it sits last in precedence: a
    closure or a dated special should both outrank it. */
 var WINTER = {
@@ -43,7 +54,7 @@ var WINTER = {
 (function (w, d) {
   'use strict';
 
-  var NOTICES = [CLOSURE, PROMO, WINTER]; // order = precedence; closure outranks the rest
+  var NOTICES = [CLOSURE, PROMO, BREAKFAST, WINTER]; // order = precedence; closure outranks the rest
   var RECHECK_MS = 60000;
 
   /* Current Central wall-clock as a sortable YYYYMMDDHHMMSS key.
@@ -115,6 +126,10 @@ var WINTER = {
     return true;
   }
 
+  function classTokens(modifier) {
+    return String(modifier || '').split(/\s+/).filter(Boolean);
+  }
+
   function render(banner, notice) {
     var msg = banner.querySelector('.closure-message');
     var phone = banner.querySelector('.closure-phone');
@@ -125,11 +140,20 @@ var WINTER = {
     var close = banner.querySelector('.closure-dismiss');
     if (close) close.hidden = !isDismissible(notice);
 
-    // Apply only the active notice's modifier; clear any other.
+    /* Apply exactly the active notice's classes and clear every other notice's.
+       A modifier may list several classes, and notices may share one, so work
+       from sets: classList.toggle throws on a string containing a space, and a
+       per-notice toggle would switch a shared class off and back on. */
+    var all = {}, on = {}, k;
     for (var i = 0; i < NOTICES.length; i++) {
-      var m = NOTICES[i].modifier;
-      if (m) banner.classList.toggle(m, !!notice && notice.modifier === m);
+      var t = classTokens(NOTICES[i].modifier);
+      for (k = 0; k < t.length; k++) all[t[k]] = true;
     }
+    if (notice) {
+      var a = classTokens(notice.modifier);
+      for (k = 0; k < a.length; k++) on[a[k]] = true;
+    }
+    for (var cls in all) banner.classList.toggle(cls, !!on[cls]);
   }
 
   function apply() {
@@ -200,6 +224,7 @@ var WINTER = {
   w.ClosureBanner = {
     CLOSURE: CLOSURE,
     PROMO: PROMO,
+    BREAKFAST: BREAKFAST,
     WINTER: WINTER,
     NOTICES: NOTICES,
     isNoticeActive: isNoticeActive,
