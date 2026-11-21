@@ -17,7 +17,7 @@
 /* Temporary closure. Dormant unless the dates are updated. */
 var CLOSURE = {
   start: "2026-08-22T00:00:00",
-  end:   "2026-08-26T16:00:00", // banner disappears at reopen time (Wed 4:00 PM)
+  end:   "2026-08-26T06:00:00", // set to reopen time: banner clears at opening, 6:00 AM
   message: "Temporarily Closed — Due to a power surge, we're closed through Tuesday. We'll reopen Wednesday, August 26. Thank you for your patience!"
 };
 
